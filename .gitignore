@@ -1,0 +1,6 @@
+.env
+.claude/
+__pycache__/
+*.py[cod]
+confidential.txt
+*confidential*.txt

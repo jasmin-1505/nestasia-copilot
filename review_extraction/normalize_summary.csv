@@ -1,0 +1,12 @@
+brand,category,unique_sku_count,raw_row_count,collection_status
+Home Centre,Bakeware,13,13,complete
+Home Centre,Cookware,259,259,complete
+Milton,Cookware,96,96,complete
+Nestasia,Bakeware,3,3,complete
+Nestasia,Container,26,36,partial
+Nestasia,Cookware,12,12,complete
+Nestasia,Kitchen Racks+Trivets,10,10,complete
+Nestasia,Lunch Boxes+Bags,24,24,partial
+Prestige,Cookware,321,321,complete
+Wonderchef,Bakeware,34,68,complete
+Wonderchef,Cookware,169,338,partial
