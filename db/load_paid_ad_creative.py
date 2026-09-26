@@ -1,5 +1,5 @@
 """
-Loads the 16 real rows from "Paid meta ads.xlsx" into PRODUCTION's
+Loads the 16 real rows from "Paid_meta_ads.xlsx" into PRODUCTION's
 paid_ad_creative table only. Fixture is never touched by this script.
 
 Reads directly from the spreadsheet (openpyxl) -- no hardcoded row values.
@@ -43,7 +43,7 @@ import openpyxl
 import psycopg2
 
 ENV_FILE = os.path.join(os.path.dirname(__file__), "..", ".env")
-XLSX_FILE = os.path.join(os.path.dirname(__file__), "..", "Paid meta ads.xlsx")
+XLSX_FILE = os.path.join(os.path.dirname(__file__), "..", "Paid_meta_ads.xlsx")
 
 BRAND_NAME_MAP = {
     "Nestasia": ("brand", "Nestasia"),
@@ -145,7 +145,7 @@ def main():
                     "INSERT INTO source_record (source_type, source_url, collected_at, notes) "
                     "VALUES (%s, %s, %s, %s) RETURNING id",
                     ("ad_library_public", r["Ad library link / ID (source)"], now,
-                     f"Sr no. {r['Sr no.']} in Paid meta ads.xlsx")
+                     f"Sr no. {r['Sr no.']} in Paid_meta_ads.xlsx")
                 )
                 source_record_id = cur.fetchone()[0]
 
