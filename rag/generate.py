@@ -127,11 +127,11 @@ def check_ollama():
     return True, f"Ollama OK, model available: {models}"
 
 
-def _call_ollama(prompt):
+def _call_ollama(prompt, system=None):
     payload = json.dumps({
         "model": MODEL,
         "prompt": prompt,
-        "system": SYSTEM_PROMPT,
+        "system": system if system is not None else SYSTEM_PROMPT,
         "stream": False,
         "options": {"temperature": 0.1},
     }).encode("utf-8")
@@ -400,8 +400,202 @@ def safety_check(answer_text, evidence):
     return False, "no source_type or dated citation found anywhere in the answer"
 
 
+# ---------------------------------------------------------------------------
+# Structural fix for aggregate/multi-entity questions (round 3+).
+#
+# Root cause of Q6's remaining unreliability, established across 3 rounds of
+# real testing: retrieve.py's bucketing (brand_has_confirmed_mismatch /
+# brand_testable_for_mismatch / brand_confirmed_clean) was correct in
+# EVERY run -- the errors (Nestasia re-appearing as a "competitor", Milton
+# silently dropped, miscounted lists) only ever happened when the LLM was
+# asked to re-narrate six brands' worth of state across a free-text
+# multi-paragraph answer. A better prompt or a stricter safety net treats
+# the symptom; the actual fix is to stop asking the model to hold and
+# restate that state at all.
+#
+# For "stock_mismatch_aggregate" (currently the only intent that asks the
+# model to count/bucket across ALL tracked brands at once, rather than look
+# up one or two) the bucket membership and brand names are filled into a
+# fixed template directly by Python, from the exact same
+# evidence["tracked_competitors"]["classification"] dict retrieve.py always
+# produces correctly. own_brand is never even read by this code path --
+# not filtered out by instruction, structurally absent from the loop, so
+# Nestasia cannot appear in a competitor bucket no matter what.
+#
+# The model's only remaining role is one short introductory sentence, and
+# even that is checked before being allowed through: if it contains any
+# digit, any known brand name, or any of a fixed set of fact-shaped words
+# (see _is_safe_framing_sentence), it's discarded and a fixed default
+# sentence is used instead. This directly answers the brief's question
+# "does the optional framing sentence ever contradict or undermine the
+# template's correct facts" -- it can't, because anything that could is
+# filtered out before assembly, not caught after the fact.
+#
+# Other intents that COULD in principle span multiple brands
+# (price_comparison, sku_count_by_category, completeness_check with no
+# brand filter) were deliberately NOT moved to this templated path: none of
+# them scored an error in any test round so far, because none of them ask
+# the model to sort brands into named categorical buckets -- they're flat
+# per-row facts, not a counting/classification task. Templating them now
+# would be fixing something that isn't broken, which the brief explicitly
+# warned against for the single-brand-lookup questions; the same caution
+# applies here.
+# ---------------------------------------------------------------------------
+_AGGREGATE_TEMPLATED_INTENTS = {"stock_mismatch_aggregate"}
+
+_FRAMING_SYSTEM_PROMPT = (
+    "You write a single short, plain introductory sentence for a report. "
+    "You do not know any facts about the report's content -- you have not "
+    "been given any data. Never state a number, a brand name, or any "
+    "conclusion. Reply with ONLY that one sentence, nothing else, no "
+    "preamble, no quotation marks."
+)
+
+_FALLBACK_FRAMING_SENTENCE = (
+    "Here's the current picture across your tracked competitors, computed directly from the database:"
+)
+
+_FACT_SHAPED_WORDS = (
+    "confirmed", "mismatch", "testable", "clean", "bug", "tested",
+    "cannot", "can't", "has the", "does have", "does not have",
+)
+
+
+def _is_safe_framing_sentence(sentence):
+    """A framing sentence is safe to use only if it asserts nothing
+    checkable -- no digits, no brand name, none of a fixed list of
+    fact-shaped words. Anything else risks the model editorializing on top
+    of the template ("Milton clearly doesn't have the bug" as a "framing"
+    sentence would be exactly the kind of undermining the brief asked to
+    test for) -- checked here, not assumed safe because it's "just an
+    intro"."""
+    if not sentence or len(sentence) > 200:
+        return False
+    if any(ch.isdigit() for ch in sentence):
+        return False
+    lowered = sentence.lower()
+    if any(b.lower() in lowered for b in _KNOWN_BRANDS):
+        return False
+    if any(w in lowered for w in _FACT_SHAPED_WORDS):
+        return False
+    return True
+
+
+def _bucket_tracked_competitors(evidence):
+    """Buckets ONLY evidence['tracked_competitors']['classification'] --
+    own_brand is never read here, which is what structurally guarantees
+    Nestasia cannot end up in a competitor bucket for this path (a Python
+    loop that never iterates over it, not a prompt instruction the model
+    could still ignore)."""
+    competitors = (evidence or {}).get("tracked_competitors", {}).get("classification", {})
+    has_bug, untestable, clean, unclassified = [], [], [], []
+    for name, cls in sorted(competitors.items()):
+        entry = {
+            "name": name,
+            "skus_with_confirmed_mismatch": cls.get("skus_with_confirmed_mismatch", 0),
+            "skus_confirmed_clean": cls.get("skus_confirmed_clean", 0),
+            "skus_not_applicable_na": cls.get("skus_not_applicable_na", 0),
+            "source_types": cls.get("source_types") or [],
+            "latest_collected_at": cls.get("latest_collected_at"),
+            "all_collection_complete": cls.get("all_collection_complete"),
+        }
+        if cls.get("brand_has_confirmed_mismatch"):
+            has_bug.append(entry)
+        elif not cls.get("brand_testable_for_mismatch"):
+            untestable.append(entry)
+        elif cls.get("brand_confirmed_clean"):
+            clean.append(entry)
+        else:
+            # Shouldn't happen given retrieve.py's own classification logic
+            # (every brand falls into exactly one of the three cases above)
+            # -- but if a future change ever produces a brand matching none
+            # of them, surface it explicitly rather than silently dropping
+            # it from the count.
+            unclassified.append(entry)
+    return has_bug, untestable, clean, unclassified
+
+
+def _format_bucket_entry(entry, bucket):
+    date = entry["latest_collected_at"]
+    date_str = date.split("T")[0] if date else "unknown date"
+    src = ", ".join(entry["source_types"]) or "unknown source"
+    partial_note = "" if entry.get("all_collection_complete") else " [PARTIAL data -- collection incomplete]"
+    if bucket == "bug":
+        detail = f"{entry['skus_with_confirmed_mismatch']} confirmed mismatched SKU(s)"
+    elif bucket == "untestable":
+        detail = f"{entry['skus_not_applicable_na']} SKU(s) not applicable / no comparable signal on this platform"
+    elif bucket == "clean":
+        detail = f"{entry['skus_confirmed_clean']} SKU(s) confirmed clean"
+    else:
+        detail = "UNCLASSIFIED -- matches none of the three known buckets, needs manual review"
+    return f"{entry['name']} ({detail}; {src} data collected {date_str}){partial_note}"
+
+
+def render_stock_mismatch_aggregate_template(evidence):
+    """Builds the entire factual body of the answer in Python -- brand
+    names, counts, and bucket membership are never generated by the model
+    for this intent. See the section docstring above for why."""
+    has_bug, untestable, clean, unclassified = _bucket_tracked_competitors(evidence)
+    total = len(has_bug) + len(untestable) + len(clean) + len(unclassified)
+
+    def join(entries, bucket):
+        return "; ".join(_format_bucket_entry(e, bucket) for e in entries) if entries else "none"
+
+    lines = [
+        f"Of {total} tracked competitors:",
+        f"- {len(has_bug)} show a CONFIRMED stock-display mismatch: {join(has_bug, 'bug')}.",
+        f"- {len(untestable)} CANNOT currently be tested on their platform (not counted as clean): "
+        f"{join(untestable, 'untestable')}.",
+        f"- {len(clean)} were tested and CONFIRMED CLEAN: {join(clean, 'clean')}.",
+    ]
+    if unclassified:
+        lines.append(f"- {len(unclassified)} did not match any known bucket, flagged for manual review: "
+                      f"{join(unclassified, 'unclassified')}.")
+    return "\n".join(lines)
+
+
+def _generate_templated(question, intent, evidence):
+    template_body = render_stock_mismatch_aggregate_template(evidence)
+
+    try:
+        raw_intro = _call_ollama(
+            f"Write one short introductory sentence for a report answering: {question}",
+            system=_FRAMING_SYSTEM_PROMPT,
+        )
+        raw_intro = raw_intro.strip().splitlines()[0].strip() if raw_intro.strip() else ""
+    except Exception:
+        raw_intro = ""
+
+    intro = raw_intro if _is_safe_framing_sentence(raw_intro) else _FALLBACK_FRAMING_SENTENCE
+    answer = f"{intro}\n\n{template_body}"
+
+    # The facts are Python-authored and already guaranteed correct; this
+    # check is defense-in-depth against the (already-filtered) framing
+    # sentence somehow still slipping in a checkable claim, not a check on
+    # the template body itself.
+    passed, reason = safety_check(answer, evidence)
+    if not passed:
+        answer = f"[UNVERIFIED -- needs human review: {reason}]\n\n{answer}"
+
+    return {
+        "question": question,
+        "intent": intent,
+        "evidence": evidence,
+        "answer": answer,
+        "safety_check_passed": passed,
+        "safety_check_reason": reason,
+        "templated": True,
+        "framing_sentence_used_model_output": raw_intro != "" and intro == raw_intro,
+    }
+
+
 def generate(question):
     evidence_result = retrieve(question)
+    intent = evidence_result["intent"]
+
+    if intent in _AGGREGATE_TEMPLATED_INTENTS:
+        return _generate_templated(question, intent, evidence_result["evidence"])
+
     evidence_json = json.dumps(evidence_result, indent=2, default=_json_default)
 
     prompt = (
@@ -421,6 +615,7 @@ def generate(question):
         "intent": evidence_result["intent"],
         "evidence": evidence_result["evidence"],
         "answer": answer,
+        "templated": False,
         "safety_check_passed": passed,
         "safety_check_reason": reason,
     }
