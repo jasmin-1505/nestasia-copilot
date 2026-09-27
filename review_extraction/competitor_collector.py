@@ -40,10 +40,15 @@ assumed to be one shared shape. Implemented so far:
     same rigorous way as Wonderchef's absence, not assumed), and a stock
     signal (grid-level .stock.unavailable badge) that only ever renders for
     genuinely out-of-stock products -- see NOTES.md finding (m).
-Borosil still needs its own reconnaissance (real platform, real selectors,
-real block/pagination behavior) before a row for it is added to
-competitor_sites.csv -- do not guess selectors for a platform that hasn't
-been inspected live.
+  - "shopify_borosil_revamp" (confirmed against Borosil/myborosil.com) --
+    Shopify again, but a fifth distinct custom theme sharing no markup with
+    any of the above. Plain ?page=N pagination with a two-independent-signal
+    completeness check built in from the start. No default availability
+    filter (an "Exclude Out Of Stock" checkbox exists but is unchecked by
+    default, confirmed both from its DOM state and behaviorally). Ground-
+    truth-confirmed real stock-mismatches -- see NOTES.md finding (n).
+All five originally-scoped competitor brands now have a working platform
+collector.
 
 Install (one-time):
     pip install playwright
@@ -1085,11 +1090,231 @@ def _collect_magento_luma(page, category_url):
         time.sleep(DELAY_BETWEEN_PAGES_SECONDS + random.uniform(0, 1.5))
 
 
+# ---------------------------------------------------------------------------
+# Platform: shopify_borosil_revamp (confirmed against Borosil/myborosil.com, Sep 2026)
+# ---------------------------------------------------------------------------
+# Borosil (myborosil.com) is Shopify, but yet another distinct custom theme
+# (window.Shopify.theme.name == "borosil-revamp/go-live-optimized-030625")
+# -- a fifth distinct platform in this project, confirmed by live inspection
+# rather than assumed from "it's Shopify" (Wonderchef's t4s theme and
+# Milton's Hyper theme were both also "just Shopify" and shared none of
+# Borosil's markup).
+#
+# Card scoping, confirmed the hard way: the obvious `[data-product-id]`
+# selector is a TRAP here -- it matches hidden per-variant `<input
+# data-product-id=...>` radio elements (used for color/size swatches), NOT
+# one-per-card. An unscoped query on this attribute returned 242 hits for a
+# category with only 68 real products. Worse, the very first
+# `a[href*='/products/']` on the page was the site's own header mega-menu
+# link, not a product card at all -- the same class of unscoped-selector
+# trap nestasia.in's search drawer and Wonderchef's carousel caused
+# earlier. The real, positively-scoped, confirmed-unique card element is
+# the theme's own custom web component: `.product-grid borosil-product-card`
+# (id attribute = the real Shopify product id).
+#
+# Each card embeds the FULL Shopify product JSON inline
+# (`<script type="application/json" class="variant-data">`), including
+# `available`, `price`, `compare_at_price`, and a `variants` array -- richer
+# and more reliable than reading scattered data-* attributes off the DOM,
+# the way Wonderchef's `data-product-options` was. No JS-context evaluation
+# of computed availability is needed for the declared signal; it's read
+# directly from this JSON.
+#
+# Pagination: plain `?page=N` via direct `page.goto()`, confirmed working
+# (genuinely different product ids between pages, unlike Milton's broken
+# `?page=N`). collection_complete requires the SAME two-independent-signal
+# agreement Milton's and Prestige's collectors use (next-page link gone AND
+# the following page independently coming back empty), built in from the
+# start here rather than the older single-signal "stop on 0-new" pattern --
+# confirmed live: the next-page link disappeared after page 3, and page 4
+# independently came back with 0 cards, for a real total of 68 SKUs.
+#
+# Availability filter, checked explicitly, not assumed from Wonderchef/
+# Prestige's precedent: the collection page has a genuine "Exclude Out Of
+# Stock" checkbox (the same kind of tell Milton's "X of Y" count string
+# was), but it is UNCHECKED by default -- confirmed both from its DOM state
+# (`input.checked === false` on a fresh load) and behaviorally (6 of the 68
+# products in the default, unfiltered listing are declared unavailable, so
+# a default filter would have hidden them and it doesn't). No dual-pass
+# walk is needed here, unlike Home Centre and Milton.
+#
+# Stock-mismatch check, ground-truth verified before writing this comment,
+# not after: the add-to-cart button carries `aria-disabled` plus a
+# `.sold-out-message` span, checked via `getComputedStyle` (never a text
+# regex) for genuine visibility. Of the 6 declared-unavailable (single-
+# variant, `available: false` at both the product and its one variant --
+# no multi-variant ambiguity) products, 3 show `aria-disabled="true"`
+# (correct) and 3 show `aria-disabled="false"` with the sold-out span not
+# visible (an active-looking button on a genuinely, unambiguously
+# unavailable product). Spot-checked 2 of those 3 directly against their
+# real product pages, in fresh, isolated browser contexts (no shared
+# cart/session state that could explain an "Added, go to bag" label as
+# stale state): both show a non-disabled add-to-cart button AND a visible
+# "Get Notified when this product comes In [stock]" restock-alert widget on
+# the same page -- the same class of bug confirmed on Milton (l): a
+# genuinely out-of-stock product with an active-looking add-to-cart control
+# nothing on the page disables.
+_BOROSIL_CARD_SELECTOR = ".product-grid borosil-product-card"
+
+_BOROSIL_EXTRACT_JS = """
+els => els.map(el => {
+    const script = el.querySelector('script.variant-data');
+    let data = null;
+    try { data = JSON.parse(script.textContent); } catch (e) { data = null; }
+    if (!data) return null;
+
+    const btn = el.querySelector('button[data-sold-out-message]');
+    let ariaDisabled = null;
+    let soldOutVisible = false;
+    if (btn) {
+        ariaDisabled = btn.getAttribute('aria-disabled');
+        const span = btn.querySelector('.sold-out-message');
+        if (span) {
+            const cs = getComputedStyle(span);
+            soldOutVisible = cs.display !== 'none' && cs.visibility !== 'hidden';
+        }
+    }
+
+    return {
+        handle: data.handle,
+        title: data.title,
+        priceCents: data.price,
+        compareAtPriceCents: data.compare_at_price,
+        available: data.available,
+        ariaDisabled: ariaDisabled,
+        soldOutVisible: soldOutVisible,
+    };
+}).filter(x => x)
+"""
+
+
+def _borosil_actual_button_state(aria_disabled, sold_out_visible):
+    if sold_out_visible:
+        return "Sold Out (visible text on button)"
+    if aria_disabled == "true":
+        return "Sold Out (button aria-disabled)"
+    if aria_disabled == "false":
+        return "Add to Cart (button active, not disabled)"
+    return "Unknown (no add-to-cart control found on card)"
+
+
+def _borosil_is_mismatch(stock_status_tag, actual_button_state):
+    """Same tag-vs-button principle as every other platform's stock_mismatch
+    -- only an affirmative contradiction counts, never a missing signal."""
+    if stock_status_tag == "Unknown" or actual_button_state.startswith("Unknown"):
+        return "Unknown"
+    button_says_in_stock = actual_button_state.startswith("Add to Cart")
+    tag_says_in_stock = stock_status_tag == "In Stock"
+    return tag_says_in_stock != button_says_in_stock
+
+
+def _extract_shopify_borosil_revamp(page, base_url):
+    cards = page.eval_on_selector_all(_BOROSIL_CARD_SELECTOR, _BOROSIL_EXTRACT_JS)
+    origin = f"{urlparse(base_url).scheme}://{urlparse(base_url).netloc}"
+
+    rows = {}
+    for card in cards:
+        handle = card.get("handle")
+        if not handle or not card.get("title"):
+            continue
+        product_url = f"{origin}/products/{handle}"
+        if product_url in rows:
+            continue
+
+        price = card["priceCents"] / 100 if card.get("priceCents") is not None else None
+        compare_at_price = card["compareAtPriceCents"] / 100 if card.get("compareAtPriceCents") else None
+        discount_percent = None
+        if price is not None and compare_at_price and compare_at_price > price:
+            discount_percent = round((1 - price / compare_at_price) * 100)
+
+        stock_status_tag = _stock_status_tag(card.get("available"))
+        actual_button_state = _borosil_actual_button_state(card.get("ariaDisabled"), card.get("soldOutVisible"))
+
+        rows[product_url] = {
+            "product_name": card["title"][:150],
+            "product_url": product_url,
+            "price": price,
+            "compare_at_price": compare_at_price,
+            "discount_percent": discount_percent,
+            "stock_status_tag": stock_status_tag,
+            "actual_button_state": actual_button_state,
+            "stock_mismatch": _borosil_is_mismatch(stock_status_tag, actual_button_state),
+        }
+    return rows
+
+
+def _collect_shopify_borosil_revamp(page, category_url):
+    """Paginate via plain ?page=N. collection_complete requires BOTH the
+    next-page link disappearing AND the following page independently
+    coming back empty -- built in from the start (see the platform
+    docstring above), not the older single-signal pattern.
+    """
+    found = {}
+    next_link_gone_at_page = None
+
+    page_num = 1
+    while True:
+        separator = "&" if "?" in category_url else "?"
+        page_url = f"{category_url}{separator}page={page_num}" if page_num > 1 else category_url
+
+        try:
+            resp = page.goto(page_url, timeout=PAGE_LOAD_TIMEOUT_MS, wait_until="domcontentloaded")
+            page.wait_for_timeout(2000)
+        except Exception as e:
+            log.warning(f"  page {page_num} load failed: {e}")
+            return found, False
+
+        block_reason = _detect_block(resp.status if resp else None, page.title())
+        if block_reason:
+            log.warning(f"  BLOCKED on page {page_num} (reason: {block_reason}) -- stopping, PARTIAL.")
+            return found, False
+
+        page_rows = _extract_shopify_borosil_revamp(page, category_url)
+        new_this_page = 0
+        for product_url, row in page_rows.items():
+            if product_url in found:
+                continue
+            found[product_url] = row
+            new_this_page += 1
+
+        has_next = page.evaluate(f"!!document.querySelector(\"a[href*='page={page_num + 1}']\")")
+        log.info(f"  page {page_num}: {new_this_page} new SKUs (running total {len(found)}), "
+                 f"returned={len(page_rows)}, has_next_link={has_next}")
+
+        if len(page_rows) == 0:
+            if next_link_gone_at_page is not None:
+                log.info(f"  page {page_num} confirmed empty after the next-page link disappeared on page "
+                         f"{next_link_gone_at_page} -- both end-signals agree, genuine end.")
+                return found, True
+            log.warning(f"  page {page_num} came back empty but the next-page link was never observed "
+                        f"disappearing first -- only one signal, not the required two. PARTIAL.")
+            return found, False
+
+        if not has_next:
+            if next_link_gone_at_page is None:
+                next_link_gone_at_page = page_num
+                log.info(f"  next-page link gone after page {page_num} -- fetching one more page to confirm "
+                         f"with the second signal before trusting this.")
+            else:
+                log.warning(f"  next-link was already gone after page {next_link_gone_at_page}, but page "
+                            f"{page_num} still returned {new_this_page} new SKUs -- signals DISAGREE. PARTIAL.")
+                return found, False
+
+        if page_num >= MAX_PAGES_PER_CATEGORY:
+            log.warning(f"  hit MAX_PAGES_PER_CATEGORY={MAX_PAGES_PER_CATEGORY} cap with {len(found)} SKUs "
+                        f"and no confirmed genuine end yet -- PARTIAL.")
+            return found, False
+
+        page_num += 1
+        time.sleep(DELAY_BETWEEN_PAGES_SECONDS + random.uniform(0, 1.5))
+
+
 PLATFORM_COLLECTORS = {
     "shopify_t4s": _collect_shopify_t4s,
     "unbxd_nextjs": _collect_unbxd_nextjs,
     "shopify_hyper_sections": _collect_shopify_hyper_sections,
     "magento_luma": _collect_magento_luma,
+    "shopify_borosil_revamp": _collect_shopify_borosil_revamp,
 }
 
 

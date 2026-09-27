@@ -828,6 +828,109 @@ Per instructions, Prestige's Bakeware-equivalent category was not added
 this session, and Borosil, Milton's Bakeware category, and nestasia.in were
 not touched.
 
+### (n) Borosil built and confirmed (Sep 2026) -- the fifth and last originally-scoped competitor, a fifth distinct platform, and a second confirmed occurrence of the bug
+Last parked competitor, finished with the same reconnaissance-first
+discipline as the other four. `shopify_borosil_revamp` platform added to
+`competitor_collector.py`; Borosil/Cookware row added to
+`competitor_sites.csv`. Borosil already had a `competitor_brand` row (id=5,
+created during the earlier paid-ad-creative load) -- reused it, did not
+create a duplicate (see the production-load section below).
+
+**Real category URL confirmed live**, not assumed from the project's
+original research phase: `myborosil.com` still resolves (HTTP 200), and its
+own nav has a "Cookware" -> "View All" link at
+`https://myborosil.com/collections/cookware`.
+
+**Platform, confirmed by live inspection**: Shopify again, but a fifth
+distinct custom theme (`window.Shopify.theme.name ==
+"borosil-revamp/go-live-optimized-030625"`), sharing no markup with
+Wonderchef's t4s theme, Milton's Hyper theme, or nestasia.in's own theme.
+**Two separate unscoped-selector traps found and avoided before writing any
+real selector** -- the same class of mistake this project has hit on
+nestasia.in (search drawer) and Wonderchef (carousel), found here twice in
+one reconnaissance pass:
+1. The first `a[href*='/products/']` on the page was the site's own header
+   mega-menu link, not a product card.
+2. The obvious `[data-product-id]` attribute is not one-per-card -- it's on
+   hidden per-variant swatch `<input>` elements, returning 242 hits on a
+   64-product page. The real, positively-scoped, confirmed-unique card
+   element is the theme's own custom web component,
+   `.product-grid borosil-product-card`.
+
+**A genuine find made this build cleaner than most**: each card embeds the
+FULL Shopify product JSON inline (`<script type="application/json"
+class="variant-data">`) -- `available`, `price`, `compare_at_price`, and a
+`variants` array, all directly parseable, no scattered data-* attributes to
+reassemble the way nestasia.in's or Milton's cards required.
+
+**Pagination**: plain `?page=N`, confirmed genuinely different content
+between pages. `collection_complete` required the SAME two-independent-
+signal agreement Milton's and Prestige's collectors use (next-page link
+gone AND the following page independently empty) -- built into
+`_collect_shopify_borosil_revamp()` from the start, per instructions, not
+discovered as a bug afterward the way it was on Wonderchef (h) and
+nestasia.in (g). Confirmed live: next-link gone after page 3, page 4
+independently empty -- both signals agreed.
+
+**Default availability filter, checked explicitly**: the collection page
+has a genuine "Exclude Out Of Stock" checkbox -- the same kind of tell
+Milton's "X of Y" count string was -- but `input.checked === false` on a
+fresh load, and behaviorally 6 of the 68 raw cards on the default
+(unfiltered) listing are declared unavailable, which a default filter would
+have hidden. No dual-pass walk needed, unlike Home Centre (i) and Milton (l).
+
+**Result**: **63 unique SKUs** (68 raw card elements before handle-based
+dedup -- at least one product, `borosil-vajra-ceramic-flat-tawa-26-cm`,
+rendered under two different card ids on the same page, confirmed the same
+handle both times, correctly collapsed to one row).
+`collection_complete=True`, both required signals agreeing.
+
+**3 real, ground-truth-verified stock-mismatches found** -- the second
+confirmed occurrence of nestasia.in's bug pattern on a competitor site,
+after Milton (l): `borosil-vajra-ceramic-flat-tawa-26-cm`,
+`borosil-vajra-ceramic-fry-pan-20-cm-900-ml`, and
+`borosil-presto-ss-outer-lid-pressure-cooker-3-l`. All three are
+**single-variant** products (ruled out the "some other variant is in
+stock" explanation directly from the embedded JSON: `variants.length === 1`
+and that one variant's own `available` is also `false` -- no ambiguity).
+All three were spot-checked against their real product pages, in fresh,
+isolated browser contexts specifically to rule out stale cart/session state
+as an alternative explanation for an "Added, go to bag"-labeled button --
+each one shows a non-disabled add-to-cart button AND a visible "Get
+Notified when this product comes In [stock]" restock-alert widget on the
+same real page. A restock-alert widget only makes sense for a genuinely
+out-of-stock product, and it coexists with a control that gives no
+indication anything is wrong -- the same "correct signal exists somewhere
+on the page, but the primary action control doesn't reflect it" shape as
+Milton's confirmed bug.
+
+**Production load**: `db/load_borosil_skus.py` loaded these 63 rows into
+production only, explicitly reusing the existing `competitor_brand` row
+(id=5, `name='Borosil'`) rather than creating a second one -- looked up by
+name, and the script aborts rather than silently creating a row if none is
+found. Independently re-verified afterward (fresh connection): exactly one
+`competitor_brand` row named Borosil exists, its 2 `paid_ad_creative` rows
+from the earlier ad-creative load and its 63 new `sku` rows are both
+correctly linked to that same id, and total `sku` count is 1017 (954 + 63,
+matching exactly). The row's `platform` (previously `NULL`) and `notes`
+(previously "no full catalogue collector exists for this brand yet") were
+updated afterward to reflect that a collector now exists -- leaving that
+stale note in place would have been misleading given the same table now
+has real per-SKU data alongside the older ad-creative rows for the same
+brand.
+
+**Running tally after all five originally-scoped brands**: nestasia.in
+(confirmed bug), Home Centre (architecture can't produce the signal),
+Milton (confirmed bug, 6 real mismatches), Wonderchef (properly tested,
+clean), Prestige (properly tested, clean), Borosil (confirmed bug, 3 real
+mismatches). **The bug has now been confirmed on two of the five
+competitors actually tested for it (Home Centre's architecture makes it
+untestable there), plus nestasia.in itself -- it is a recurring pattern
+across unrelated brands and platforms, not a one-off.**
+
+Borosil's Bakeware-equivalent category was not added this session (Cookware
+only, per the one-category-first discipline every brand has followed).
+
 ## On "real-time" vs incremental refresh
 This script is deliberately NOT real-time. Every run:
 1. Reads `checkpoint.json` for the last review date seen per product.
