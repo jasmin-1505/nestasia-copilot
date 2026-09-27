@@ -443,16 +443,41 @@ def safety_check(answer_text, evidence):
 # ---------------------------------------------------------------------------
 _AGGREGATE_TEMPLATED_INTENTS = {"stock_mismatch_aggregate"}
 
-_FRAMING_SYSTEM_PROMPT = (
-    "You write a single short, plain introductory sentence for a report. "
-    "You do not know any facts about the report's content -- you have not "
-    "been given any data. Never state a number, a brand name, or any "
-    "conclusion. Reply with ONLY that one sentence, nothing else, no "
-    "preamble, no quotation marks."
-)
-
-_FALLBACK_FRAMING_SENTENCE = (
-    "Here's the current picture across your tracked competitors, computed directly from the database:"
+# ---------------------------------------------------------------------------
+# Framing sentence: NOT model-generated. An earlier version of this file had
+# the model write a free-text intro sentence and validated it with
+# _is_safe_framing_sentence() (a keyword-based filter: reject anything with
+# a digit, a known brand name, or one of a fixed list of "fact-shaped"
+# words like "confirmed"/"mismatch"/"bug"). Directly unit-testing that
+# filter against synthetic adversarial sentences -- the same discipline
+# used to verify the safety net's earlier fixes against real failure text,
+# not just assumed to work -- found it let two real failure classes
+# straight through:
+#   - "Most of your competitors are performing well on this metric" --
+#     a fact claim paraphrased with none of the listed words. The filter
+#     is a fixed keyword list; a small local model can rephrase around any
+#     fixed list indefinitely, and this is exactly the shape of rephrase
+#     that would.
+#   - "Great news -- no issues found anywhere!" -- an outright
+#     CONTRADICTION of the template (which says 2 brands have a confirmed
+#     mismatch), and still no digit, brand name, or listed word for the
+#     filter to catch. This is the more serious failure: not just an
+#     unverifiable claim, but a wrong one sitting directly above correct
+#     facts.
+# Only 3 of 5 synthetic test cases were actually caught (see
+# review_extraction/NOTES.md's RAG section for the full test). A broader
+# keyword/semantic list would still be a fixed list a model can route
+# around; it narrows the gap without closing it. Given this framing
+# sentence exists purely for cosmetic variety and contributes nothing a
+# user needs, the fix is the more restrictive option the brief itself
+# raised: stop generating it at all. It's chosen from a short, fully
+# pre-approved, hand-read set of sentences that assert nothing -- there is
+# no text here an LLM produced or could still slip a claim into.
+# ---------------------------------------------------------------------------
+_APPROVED_FRAMING_SENTENCES = (
+    "Here's the current picture across your tracked competitors, computed directly from the database:",
+    "The following is computed directly from your live tracking data:",
+    "Here's what the database currently shows across your tracked competitors:",
 )
 
 _FACT_SHAPED_WORDS = (
@@ -461,14 +486,24 @@ _FACT_SHAPED_WORDS = (
 )
 
 
+def _choose_framing_sentence(question):
+    """Deterministic, not random -- the same question always gets the same
+    sentence, which keeps output reproducible for testing/auditing without
+    needing any model call at all."""
+    idx = sum(ord(c) for c in question) % len(_APPROVED_FRAMING_SENTENCES)
+    return _APPROVED_FRAMING_SENTENCES[idx]
+
+
 def _is_safe_framing_sentence(sentence):
-    """A framing sentence is safe to use only if it asserts nothing
+    """Kept for its unit tests and as a defensive check on
+    _APPROVED_FRAMING_SENTENCES itself (see test coverage) -- no longer
+    used to validate model output, since none is generated for this path
+    anymore. Still: a framing sentence is safe only if it asserts nothing
     checkable -- no digits, no brand name, none of a fixed list of
-    fact-shaped words. Anything else risks the model editorializing on top
-    of the template ("Milton clearly doesn't have the bug" as a "framing"
-    sentence would be exactly the kind of undermining the brief asked to
-    test for) -- checked here, not assumed safe because it's "just an
-    intro"."""
+    fact-shaped words. Confirmed by direct testing (not assumed) that this
+    keyword-based check alone is NOT sufficient to catch a paraphrased or
+    contradicting claim -- see the section docstring above for why the
+    live path no longer relies on it."""
     if not sentence or len(sentence) > 200:
         return False
     if any(ch.isdigit() for ch in sentence):
@@ -557,22 +592,17 @@ def render_stock_mismatch_aggregate_template(evidence):
 def _generate_templated(question, intent, evidence):
     template_body = render_stock_mismatch_aggregate_template(evidence)
 
-    try:
-        raw_intro = _call_ollama(
-            f"Write one short introductory sentence for a report answering: {question}",
-            system=_FRAMING_SYSTEM_PROMPT,
-        )
-        raw_intro = raw_intro.strip().splitlines()[0].strip() if raw_intro.strip() else ""
-    except Exception:
-        raw_intro = ""
-
-    intro = raw_intro if _is_safe_framing_sentence(raw_intro) else _FALLBACK_FRAMING_SENTENCE
+    # No model call at all for the intro -- see the section docstring above
+    # _APPROVED_FRAMING_SENTENCES for why free generation here was removed
+    # rather than filtered.
+    intro = _choose_framing_sentence(question)
     answer = f"{intro}\n\n{template_body}"
 
-    # The facts are Python-authored and already guaranteed correct; this
-    # check is defense-in-depth against the (already-filtered) framing
-    # sentence somehow still slipping in a checkable claim, not a check on
-    # the template body itself.
+    # The facts are Python-authored and the intro is drawn from a fixed,
+    # pre-approved set -- nothing in this answer was generated by the model,
+    # so this check is pure defense-in-depth (e.g. catching a future bug in
+    # render_stock_mismatch_aggregate_template itself), not a check on any
+    # model output.
     passed, reason = safety_check(answer, evidence)
     if not passed:
         answer = f"[UNVERIFIED -- needs human review: {reason}]\n\n{answer}"
@@ -585,7 +615,7 @@ def _generate_templated(question, intent, evidence):
         "safety_check_passed": passed,
         "safety_check_reason": reason,
         "templated": True,
-        "framing_sentence_used_model_output": raw_intro != "" and intro == raw_intro,
+        "framing_sentence_model_generated": False,
     }
 
 
