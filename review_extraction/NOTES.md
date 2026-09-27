@@ -339,6 +339,69 @@ waiting longer than one calendar day, and treat any future single clean
 recon request as necessary but explicitly NOT sufficient evidence that a
 multi-page run will succeed.
 
+**Attempt 3 (Sep 2026, `nestasia_isolation_recovery_attempt3.py`) -- browser-context
+isolation tested directly, and ruled out as the explanation.** Both prior
+attempts ran all four collections sequentially in ONE continuous Playwright
+context, and both times a block on the first collection spread to the other
+three on their very first request each -- even to URLs never touched yet
+that session. That specific pattern (spread to an untouched URL) looked
+like session-level state (cookies, or fingerprint continuity within one
+browser context), not purely per-URL or per-IP blocking. This attempt
+tested that theory directly rather than repeating the same approach a third
+time hoping the block had cleared on its own: every one of the four
+collections ran in its own freshly-created `browser.new_context()`, torn
+down immediately after, sharing nothing with the others except the
+underlying OS process.
+
+Per instructions, started with a single minimal recon (one page load of
+jars-canisters, its own fresh context) before touching anything else --
+**recon came back completely clean** (HTTP 200, 12 real cards, no block
+signature). Proceeding one isolated collection at a time (not assuming the
+clean recon meant the rest would also be clean, per the lesson already
+learned twice): every single one of the four collections showed the
+identical page-1-clean-page-2-blocked pattern, in a BRAND NEW, never-before-
+touched context each time:
+
+| Collection | Page 1 | Page 2 |
+|---|---|---|
+| jars-canisters | 12 SKUs, HTTP 200 | HTTP 403 |
+| fridge-storage-containers (fresh context) | 12 SKUs, HTTP 200 | HTTP 403 |
+| lunch-boxes (fresh context) | 12 SKUs, HTTP 200 | HTTP 403 |
+| lunch-bags (fresh context) | 12 SKUs, HTTP 200 | HTTP 403 |
+
+**Isolation did NOT contain the block -- it spread identically to every
+fresh context tested.** This directly rules out the session/cookie-state
+theory this attempt was built to test: if the block were tied to browser
+context state, at least one of three completely fresh, never-touched
+contexts should have worked cleanly past page 1, and none did. The
+identical page-1/page-2 split across four independent contexts instead
+points to something outside the browser entirely -- most plausibly IP-based
+or connection-level (TLS fingerprint, timing pattern) blocking at
+Cloudflare's edge, which no amount of browser-context isolation from the
+same machine's network connection can address.
+
+Result: 48 SKUs collected (12 per collection, all `collection_complete=False`,
+correctly and consistently), all appended to `nestasia_catalogue.csv`.
+Checked all 48 for stock-mismatch per the standard dual-signal check --
+**zero flagged**, so no ground-truth verification was needed this round
+(nothing to verify). This is not a meaningful data point on the bug either
+way, for the same reason as attempts 1-2: a 12-SKU-per-collection sample is
+far short of these subcategories' real totals (~99, ~77, 39, 50 per their
+own on-page counters).
+
+**Conclusion, per instructions: three tries, three genuinely different
+reasonable approaches (standard pacing, doubled pacing, full context
+isolation), three identical failures at the same page-1/page-2 boundary.
+This is enough evidence that scripted automation is not going to resolve
+this on its own right now.** Recommending manual checking for Container and
+Lunch Boxes+Bags instead of a fourth automated attempt -- a person browsing
+these two collection pages directly in an ordinary browser can almost
+certainly see past page 1 (this is what Cloudflare-style bot protection is
+specifically designed to allow), and that manual pass is the only way left
+to answer whether nestasia.in's stock-display bug is resolved in these two
+subcategories, which remains the single most important open question this
+project has not yet been able to close.
+
 ### (h) competitor_collector.py -- first live test (Wonderchef, Sep 2026), and a page-cap under-count bug found and fixed before it ever shipped
 `competitor_collector.py` / `competitor_sites.csv` are new, built to the same
 conventions as `own_site_collector.py` (config-driven CSV input, block
