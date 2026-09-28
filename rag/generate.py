@@ -620,7 +620,14 @@ def _generate_templated(question, intent, evidence):
 
 
 def generate(question):
-    evidence_result = retrieve(question)
+    # db_mode is hardcoded to "production" here, not inferred -- this is the
+    # ORIGINAL 8-question entry point and its callers (test_questions.py,
+    # this file's own __main__) were written before the fixture/production
+    # switch existed. It keeps working unchanged, against production, by
+    # explicit statement rather than a default that could silently drift.
+    # The 25 fixture business questions go through generate_fixture_business_
+    # answer() below instead, which requires db_mode="fixture" explicitly.
+    evidence_result = retrieve(question, db_mode="production")
     intent = evidence_result["intent"]
 
     if intent in _AGGREGATE_TEMPLATED_INTENTS:
@@ -648,6 +655,141 @@ def generate(question):
         "templated": False,
         "safety_check_passed": passed,
         "safety_check_reason": reason,
+    }
+
+
+# ---------------------------------------------------------------------------
+# The 25 fixture business questions (business_questions_25.md) -- fully
+# templated, NO model call at all. Per this project's established lesson
+# (see _APPROVED_FRAMING_SENTENCES and its history above), letting a model
+# freely narrate structured multi-field evidence has repeatedly produced
+# hallucinated or dropped values even under a safety net. These 25 answers
+# carry citation/disclaimer/accuracy-label requirements that must be exact
+# and consistent on every single one, so this renders the entire answer in
+# Python from fixture_business_queries.py's structured output.
+# ---------------------------------------------------------------------------
+from business_questions_text import BUSINESS_QUESTIONS_25  # noqa: E402
+
+_ACCURACY_VERIFIED = "Verified"
+_ACCURACY_ILLUSTRATIVE = "Illustrative only"
+_ACCURACY_PARTIAL_ILLUSTRATIVE = "Partially illustrative"
+
+_STRONG_DISCLAIMER = (
+    "🔒 Requires your real sales/margin data -- the numbers below are "
+    "placeholder figures from the synthetic demo dataset, not real sales."
+)
+_LIGHT_DISCLAIMER = (
+    "Note: this uses synthetic demo data (not a live business signal)."
+)
+_NOT_RANDOM_NOISE_NOTE = (
+    "The synthetic figures behind this answer are not random noise -- they "
+    "were modeled from real price, discount, and ad-activity signals "
+    "(review data wasn't available to correlate against), so patterns you "
+    "see here reflect that modeling choice, not an arbitrary or a real "
+    "predicted outcome."
+)
+
+_SALES_MARGIN_TABLES = {"sales_data", "margin_data", "inventory_data", "channel_performance"}
+
+
+def _accuracy_label(sources):
+    if not sources:
+        return None
+    types = {s["source_type"] for s in sources}
+    if types == {"real"}:
+        return _ACCURACY_VERIFIED
+    if types == {"synthetic"}:
+        return _ACCURACY_ILLUSTRATIVE
+    return _ACCURACY_PARTIAL_ILLUSTRATIVE  # weakest-link: any synthetic in a blend downgrades it
+
+
+def _citation_line(sources):
+    if not sources:
+        return "Citation: none -- no supporting table for this question."
+    real = sorted({s["table"] for s in sources if s["source_type"] == "real"})
+    synth = sorted({s["table"] for s in sources if s["source_type"] == "synthetic"})
+    parts = []
+    if real:
+        parts.append(f"real/production-sourced: {', '.join(real)}")
+    if synth:
+        parts.append(f"synthetic/fixture-sourced: {', '.join(synth)}")
+    return "Citation: " + "; ".join(parts)
+
+
+def _disclaimer_lines(sources, gap_explanation, special_note):
+    lines = []
+    touches_sales_or_margin = any(s["table"] in _SALES_MARGIN_TABLES for s in sources)
+    has_synthetic = any(s["source_type"] == "synthetic" for s in sources)
+    if touches_sales_or_margin and has_synthetic:
+        lines.append(_STRONG_DISCLAIMER)
+    elif has_synthetic:
+        lines.append(_LIGHT_DISCLAIMER)
+    if has_synthetic:
+        lines.append(_NOT_RANDOM_NOISE_NOTE)
+    if gap_explanation:
+        lines.append(f"What this can't tell you: {gap_explanation}")
+    if special_note:
+        lines.append(f"Additional note: {special_note}")
+    return lines
+
+
+def _format_data(data):
+    if data in (None, [], {}):
+        return "(no rows)"
+    if isinstance(data, list):
+        lines = []
+        for row in data:
+            if isinstance(row, dict):
+                lines.append(" - " + ", ".join(f"{k}={v}" for k, v in row.items()))
+            else:
+                lines.append(f" - {row}")
+        return "\n".join(lines)
+    if isinstance(data, dict):
+        lines = []
+        for k, v in data.items():
+            lines.append(f"{k}:")
+            lines.append("  " + _format_data(v).replace("\n", "\n  "))
+        return "\n".join(lines)
+    return str(data)
+
+
+def generate_fixture_business_answer(question_number):
+    """The only entry point for the 25 gold-set questions. Requires
+    db_mode="fixture" implicitly by construction -- there is no production
+    code path here at all, so there's nothing to infer or default."""
+    from fixture_business_queries import run_fixture_question
+
+    if question_number not in BUSINESS_QUESTIONS_25:
+        raise ValueError(f"question_number={question_number!r} is not one of the 25 gold-set questions (1-25).")
+    question_text = BUSINESS_QUESTIONS_25[question_number]
+    result = run_fixture_question(question_number)
+
+    supported = result["supported"]
+    sources = result["sources"]
+    accuracy = _accuracy_label(sources) if supported != "none" or sources else "N/A -- unsupported by this schema"
+    citation = _citation_line(sources)
+    disclaimers = _disclaimer_lines(sources, result.get("gap_explanation"), result.get("special_note"))
+
+    if supported == "none":
+        body = (f"This question cannot be answered from the current fixture schema.\n\n"
+                f"{result['gap_explanation']}")
+    else:
+        header = "Full answer:" if supported == "full" else "Partial answer (see gap below):"
+        body = f"{header}\n{_format_data(result['data'])}"
+
+    answer = "\n\n".join([body, citation, *disclaimers, f"Accuracy: {accuracy}"])
+
+    return {
+        "question_number": question_number,
+        "question": question_text,
+        "db_mode": "fixture",
+        "supported": supported,
+        "accuracy_label": accuracy,
+        "citation": citation,
+        "disclaimers": disclaimers,
+        "answer": answer,
+        "raw_result": result,
+        "templated": True,
     }
 
 

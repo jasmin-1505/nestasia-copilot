@@ -94,7 +94,14 @@ def _load_env():
     return values
 
 
-def _connect(prefix="PRODUCTION"):
+def _connect(prefix):
+    """No default prefix -- every call site must say PRODUCTION or FIXTURE
+    explicitly. An earlier version defaulted to "PRODUCTION", which is
+    exactly the kind of silent inference the mode switch below exists to
+    rule out; removed rather than left as a trap for a future call site
+    that forgets to pass one."""
+    if prefix not in ("PRODUCTION", "FIXTURE"):
+        raise ValueError(f"_connect() requires prefix='PRODUCTION' or 'FIXTURE' explicitly, got {prefix!r}")
     env = _load_env()
     return psycopg2.connect(
         host=env[f"{prefix}_DB_HOST"], port=env[f"{prefix}_DB_PORT"],
@@ -436,7 +443,41 @@ def _split_evidence_by_ownership(evidence):
 # ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
-def retrieve(question):
+DB_MODES = ("production", "fixture")
+
+
+def retrieve_fixture_question(question_number):
+    """Deterministic routing for the 25 fixed gold-set questions -- imported
+    lazily to avoid a circular import (fixture_business_queries imports
+    _connect from this module)."""
+    from fixture_business_queries import run_fixture_question
+    return run_fixture_question(question_number)
+
+
+def retrieve(question, db_mode, question_number=None):
+    """db_mode is REQUIRED, not defaulted -- 'production' (real data) or
+    'fixture' (synthetic demo data). Never inferred from the question text:
+    a question that happens to look like one of the 25 business-question
+    gold-set items is not, by itself, evidence the caller wants fixture
+    data -- the caller must say so explicitly every time. This is a hard
+    requirement, not a convenience default, because the two databases carry
+    fundamentally different trust levels and mixing them up silently is
+    exactly the failure this switch exists to prevent.
+
+    question_number (1-25, optional): when given, routes deterministically
+    to the exact gold-set intent for that question via
+    FIXTURE_GOLD_SET_ROUTES (see that section below) instead of the
+    keyword-based classify_intent() -- the 25 gold-set questions are a
+    FIXED, KNOWN set, not open natural language, so exact routing by number
+    is more reliable than fuzzy re-classification of their text every time.
+    """
+    if db_mode not in DB_MODES:
+        raise ValueError(f"retrieve() requires db_mode='production' or 'fixture' explicitly, got {db_mode!r} "
+                          f"-- this is never inferred or defaulted.")
+
+    if db_mode == "fixture" and question_number is not None:
+        return retrieve_fixture_question(question_number)
+
     parsed = classify_intent(question)
     intent = parsed["intent"]
 
@@ -444,6 +485,7 @@ def retrieve(question):
         return {
             "intent": intent,
             "question": question,
+            "db_mode": db_mode,
             "evidence": [],
             "note": ("This question asks about sales, margin, or other internal business "
                      "data. This database only contains publicly-collected storefront/ad data "
@@ -455,11 +497,12 @@ def retrieve(question):
         return {
             "intent": intent,
             "question": question,
+            "db_mode": db_mode,
             "evidence": [],
             "note": "Could not classify this question into a supported retrieval intent.",
         }
 
-    conn = _connect("PRODUCTION")
+    conn = _connect(db_mode.upper())
     try:
         with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
             if intent == "price_comparison":
@@ -480,7 +523,7 @@ def retrieve(question):
         conn.close()
 
     evidence = _split_evidence_by_ownership(evidence)
-    return {"intent": intent, "question": question, "params": parsed, "evidence": evidence, "note": ""}
+    return {"intent": intent, "question": question, "db_mode": db_mode, "params": parsed, "evidence": evidence, "note": ""}
 
 
 def _json_default(o):
@@ -491,5 +534,5 @@ def _json_default(o):
 
 if __name__ == "__main__":
     q = " ".join(sys.argv[1:]) or "How does our Cookware pricing compare to Home Centre's?"
-    result = retrieve(q)
+    result = retrieve(q, db_mode="production")
     print(json.dumps(result, indent=2, default=_json_default))
