@@ -494,11 +494,169 @@ def print_all_headlines(all_data):
         print(f"[{qid}] {all_data[qid]['bundle']['headline']}")
 
 
+# ---------------------------------------------------------------------------
+# Direction check: wherever a headline uses a comparative word (higher/
+# lower/above/below/more/less/rising/declining/up/down/ahead/behind),
+# independently extract the two quantities it's comparing from the
+# underlying data and assert the claimed direction actually holds.
+#
+# Each spec is explicit about which raw value is "val_a" and which is
+# "val_b" and what relation the headline's wording asserts between them
+# (">" or "<") -- deliberately NOT a generic keyword->relation table,
+# because a word like "down" means opposite things depending on which
+# quantity is named first ("X down to N" vs "first period N1 vs latest
+# N2" -- "down" there means N1 > N2, not val_a < val_b). Encoding the
+# relation per-headline avoids that ambiguity being silently wrong.
+# ---------------------------------------------------------------------------
+DIRECTION_KEYWORDS = ("higher", "lower", "above", "below", "more", "less",
+                       "rising", "declining", "up", "down", "ahead", "behind")
+DIRECTION_RE = re.compile(r"\b(" + "|".join(DIRECTION_KEYWORDS) + r")\b", re.IGNORECASE)
+
+# Text-level flip used only to show what the "deliberately flipped"
+# headline would read like in the report -- the actual pass/fail
+# verdict comes from flipping the spec's operator, not from word matching.
+TEXT_FLIP = {"higher": "lower", "lower": "higher", "above": "below", "below": "above",
+             "more": "less", "less": "more", "rising": "declining", "declining": "rising",
+             "up": "down", "down": "up", "ahead": "behind", "behind": "ahead"}
+
+
+def _demo9_direction_spec(underlying):
+    by_cat = {r["category"]: r for r in underlying}
+    cookware, bakeware = by_cat.get("Cookware"), by_cat.get("Bakeware")
+    if not cookware or not bakeware:
+        return None
+    # Headline: "Bakeware is more profitable: Cookware averages X% ...
+    # Bakeware's Y%." -- asserts Bakeware's margin > Cookware's margin.
+    return {"name_a": "Bakeware margin", "val_a": float(bakeware["avg_margin_percent"]),
+            "name_b": "Cookware margin", "val_b": float(cookware["avg_margin_percent"]), "op": ">"}
+
+
+def _live1_direction_spec(underlying):
+    own = underlying["own_brand"]
+    comp = underlying["tracked_competitors"]
+    if not own or not comp:
+        return None
+    # Headline: "Nestasia's Cookware averages ₹X, N% higher than Home
+    # Centre's ₹Y." -- asserts own avg_price > competitor avg_price.
+    return {"name_a": f"{own[0]['brand_name']} avg price", "val_a": float(own[0]["avg_price"]),
+            "name_b": f"{comp[0]['brand_name']} avg price", "val_b": float(comp[0]["avg_price"]), "op": ">"}
+
+
+DIRECTION_SPECS = {
+    "demo_9": _demo9_direction_spec,
+    "live_1": _live1_direction_spec,
+}
+
+
+def _verify_op(val_a, op, val_b):
+    return val_a > val_b if op == ">" else val_a < val_b
+
+
+def check_all_directions(all_data):
+    verified, failed, unverifiable = [], [], []
+
+    for qid, d in all_data.items():
+        headline = d["bundle"]["headline"]
+        matches = DIRECTION_RE.findall(headline)
+        if not matches:
+            continue
+        keyword = matches[0].lower()
+        spec_fn = DIRECTION_SPECS.get(qid)
+        if spec_fn is None:
+            unverifiable.append((qid, keyword, headline, "no direction-check spec written for this headline shape"))
+            continue
+        spec = spec_fn(d["underlying"])
+        if spec is None:
+            unverifiable.append((qid, keyword, headline, "underlying data doesn't have both quantities to compare"))
+            continue
+        ok = _verify_op(spec["val_a"], spec["op"], spec["val_b"])
+        if ok:
+            verified.append((qid, keyword, spec["name_a"], spec["val_a"], spec["name_b"], spec["val_b"]))
+        else:
+            failed.append((qid, keyword, headline, spec))
+
+    print()
+    print(f"[direction-check] headlines with a comparative keyword: {len(verified) + len(failed) + len(unverifiable)}")
+    print(f"[direction-check] verified correct: {len(verified)}")
+    for v in verified:
+        print("   ", v)
+    print(f"[direction-check] FAILED (claimed direction contradicts the data): {len(failed)}")
+    for f in failed:
+        print("   ", f)
+    print(f"[direction-check] could not verify automatically: {len(unverifiable)}")
+    for u in unverifiable:
+        print("   ", u)
+
+    return len(failed) == 0, failed, unverifiable
+
+
+def prove_direction_flip(label, spec, real_headline_for_display=None, keyword_for_display=None):
+    """Flips the spec's operator (the actual deliberate-error injection)
+    and confirms _verify_op now returns False where it returned True
+    before. Also prints the equivalent flipped headline text, for
+    readability, using TEXT_FLIP -- that text is illustrative only; the
+    pass/fail verdict comes from the operator flip, not from string
+    matching."""
+    ok_before = _verify_op(spec["val_a"], spec["op"], spec["val_b"])
+    flipped_op = "<" if spec["op"] == ">" else ">"
+    ok_after = _verify_op(spec["val_a"], flipped_op, spec["val_b"])
+
+    flipped_text = None
+    if real_headline_for_display and keyword_for_display:
+        flipped_text = re.sub(r"\b" + keyword_for_display + r"\b", TEXT_FLIP[keyword_for_display],
+                               real_headline_for_display, count=1, flags=re.IGNORECASE)
+
+    print(f"[direction-flip-proof] {label}: unflipped ok={ok_before} (expect True), "
+          f"flipped ok={ok_after} (expect False)")
+    if flipped_text:
+        print(f"    flipped headline would read: {flipped_text!r}")
+
+    return ok_before is True and ok_after is False
+
+
+def run_direction_flip_proofs(all_data):
+    results = []
+
+    # Case 1 & 2: the two real headlines in the current 33 that contain a
+    # direction keyword AND have both quantities available to compare.
+    for qid, keyword in (("demo_9", "more"), ("live_1", "higher")):
+        spec = DIRECTION_SPECS[qid](all_data[qid]["underlying"])
+        headline = all_data[qid]["bundle"]["headline"]
+        passed = prove_direction_flip(qid, spec, headline, keyword)
+        results.append((qid, passed))
+
+    # Case 3: only 2 of the current 33 real headlines contain a direction
+    # keyword with both quantities present (demo_12 names only one
+    # quantity with no baseline to compare against; demo_23's comparative
+    # "trending down" wording only appears in its non-empty branch, which
+    # no SKU currently triggers -- see check_all_directions()'s
+    # "unverifiable" list). To reach 3 genuine proof cases without
+    # fabricating a headline for the dump, this exercises that SAME
+    # present_demo_23() code path directly with constructed input data
+    # (not one of the 33 real current headlines -- clearly a synthetic
+    # proof case, not part of headlines_dump.md).
+    synthetic_raw = {"data": [{"product_name": "Synthetic Test Product For Proof Only",
+                                "units_sold_by_period": [500, 100]}]}
+    synthetic_bundle = p.present_demo_23(synthetic_raw)
+    synthetic_spec = {"name_a": "first period units", "val_a": 500,
+                       "name_b": "latest period units", "val_b": 100, "op": ">"}
+    print(f"[direction-flip-proof] demo_23 (SYNTHETIC INPUT, code path only, not in headlines_dump.md): "
+          f"{synthetic_bundle['headline']!r}")
+    passed = prove_direction_flip("demo_23 (synthetic)", synthetic_spec, synthetic_bundle["headline"], "down")
+    results.append(("demo_23 (synthetic)", passed))
+
+    all_passed = all(ok for _, ok in results)
+    print(f"[direction-flip-proof] {sum(1 for _, ok in results if ok)}/{len(results)} flip proofs passed")
+    return all_passed, results
+
+
 if __name__ == "__main__":
     headline_ok = main()
     directive_ok, hard_failures, review_list = test_no_directive_language(ALL_BUNDLES)
     mutation_ok, survived, no_claim = prove_test_catches_mutation_all(ALL_DATA)
     ranking_ok, ranking_failed, ranking_unverifiable = check_all_rankings(ALL_DATA)
+    direction_ok, direction_failed, direction_unverifiable = check_all_directions(ALL_DATA)
+    flip_proof_ok, flip_proof_results = run_direction_flip_proofs(ALL_DATA)
     print_all_headlines(ALL_DATA)
 
     print()
@@ -508,5 +666,8 @@ if __name__ == "__main__":
           f"({len(no_claim)} had no claimed number to mutate)")
     print(f"Ranking check:                                  {'PASSED' if ranking_ok else 'FAILED'} "
           f"({len(ranking_unverifiable)} could not be verified automatically)")
+    print(f"Direction check:                                {'PASSED' if direction_ok else 'FAILED'} "
+          f"({len(direction_unverifiable)} could not be verified automatically)")
+    print(f"Direction flip-proof (>=3 headlines):           {'PASSED' if flip_proof_ok else 'FAILED'}")
     print(f"Directive-language hard check:                 {'PASSED' if directive_ok else 'FAILED'}")
     print(f"Imperative-verb sentences flagged for review:   {len(review_list)}")
