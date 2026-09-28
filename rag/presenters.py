@@ -391,7 +391,12 @@ def present_demo_13(raw):
     rows = raw["data"]
     if not rows:
         return _no_data_bundle(raw, "no quick-commerce channel present")
-    top = rows[0]
+    # The handler filters to qCommerce channels but does NOT sort by
+    # revenue (rows come back in whatever order the SQL grouping returns,
+    # i.e. alphabetical by channel) -- rows[0] was a real bug here, caught
+    # by test_presenters.py's ranking check: it named "Blinkit" as top
+    # while Instamart actually had higher revenue.
+    top = max(rows, key=lambda r: float(r["revenue"]))
     headline = f"{top['channel']} is our top quick-commerce channel at {format_inr(top['revenue'])} revenue."
     visual = _bar([r["channel"] for r in rows], [float(r["revenue"]) for r in rows], "₹")
     return {

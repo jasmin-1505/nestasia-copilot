@@ -33,7 +33,7 @@ from retrieve import retrieve
 
 CURRENCY_RE = re.compile(r"₹\d{1,3}(?:,\d{2,3})*(?:\.\d+)?(?:\s*(?:lakh|crore))?")
 PERCENT_RE = re.compile(r"-?\d+\.?\d*%")
-PLAIN_NUM_RE = re.compile(r"(?<![\w.])-?\d+(?:\.\d+)?(?![\w.])")
+PLAIN_NUM_RE = re.compile(r"(?<![\w.])-?\d+(?:\.\d+)?(?!\w)")
 
 
 def _all_strings(obj):
@@ -106,23 +106,25 @@ def _formatted_candidates(numbers, extra_counts=(), extra_values=()):
     copied from the presenter's own output), so a wrong formula in the
     presenter still gets caught rather than rubber-stamped."""
     currency, percent, plain = set(), set(), set()
+
+    def add_plain(v):
+        plain.add(str(int(round(v))))
+        for prec in (1, 2, 3, 4):
+            plain.add(f"{v:.{prec}f}")
+            plain.add(f"{abs(v):.{prec}f}")
+
     for v in numbers:
         currency.add(p.format_inr(v))
         percent.add(p.format_pct(v))
         percent.add(p.format_pct(abs(v)))
-        plain.add(str(int(round(v))))
-        plain.add(f"{v:.1f}")
-        plain.add(f"{v:.2f}")
-        plain.add(f"{abs(v):.1f}")
+        add_plain(v)
     for c in extra_counts:
         plain.add(str(int(c)))
     for v in extra_values:
         currency.add(p.format_inr(v))
         percent.add(p.format_pct(v))
         percent.add(p.format_pct(abs(v)))
-        plain.add(str(int(round(v))))
-        plain.add(f"{v:.1f}")
-        plain.add(f"{abs(v):.1f}")
+        add_plain(v)
     return currency, percent, plain
 
 
@@ -183,8 +185,9 @@ def _demo_extra_counts(qnum, raw):
 def _demo_check(qnum):
     raw = fbq.run_fixture_question(qnum)
     bundle = p.PRESENTERS[f"demo_{qnum}"](raw)
-    ok = check_headline(f"demo_{qnum}", bundle["headline"], raw["data"], extra_counts=_demo_extra_counts(qnum, raw))
-    return ok, bundle
+    extra_counts = _demo_extra_counts(qnum, raw)
+    ok = check_headline(f"demo_{qnum}", bundle["headline"], raw["data"], extra_counts=extra_counts)
+    return ok, bundle, raw["data"], extra_counts, []
 
 
 _MISMATCH_BRAND_BY_ENTRY = {"live_2": ("Nestasia", "own_brand"), "live_3": ("Milton", "tracked_competitors"),
@@ -218,19 +221,22 @@ def _live_check(entry_id):
         extra_counts.extend([len(with_bug), len(testable), len(untestable)])
 
     ok = check_headline(entry_id, bundle["headline"], result["evidence"], extra_counts=extra_counts, extra_values=extra_values)
-    return ok, bundle
+    return ok, bundle, result["evidence"], extra_counts, extra_values
 
 
-ALL_BUNDLES = {}  # populated by main(), reused by test_no_directive_language()
+ALL_DATA = {}  # qid -> {"bundle":..., "underlying":..., "extra_counts":..., "extra_values":...}
+ALL_BUNDLES = {}  # qid -> bundle (kept for test_no_directive_language's existing signature)
 
 
 def main():
     all_ok = True
 
     for qnum in range(1, 26):
-        ok, bundle = _demo_check(qnum)
+        qid = f"demo_{qnum}"
+        ok, bundle, underlying, extra_counts, extra_values = _demo_check(qnum)
         all_ok = all_ok and ok
-        ALL_BUNDLES[f"demo_{qnum}"] = bundle
+        ALL_BUNDLES[qid] = bundle
+        ALL_DATA[qid] = {"bundle": bundle, "underlying": underlying, "extra_counts": extra_counts, "extra_values": extra_values}
         print(f"    suggestion: {bundle['suggestion']!r}")
         print(f"    firm_up: {bundle['firm_up']!r}")
         print(f"    caveat: {bundle.get('caveat')!r}")
@@ -239,10 +245,11 @@ def main():
         print()
 
     for i in range(1, 9):
-        entry_id = f"live_{i}"
-        ok, bundle = _live_check(entry_id)
+        qid = f"live_{i}"
+        ok, bundle, underlying, extra_counts, extra_values = _live_check(qid)
         all_ok = all_ok and ok
-        ALL_BUNDLES[entry_id] = bundle
+        ALL_BUNDLES[qid] = bundle
+        ALL_DATA[qid] = {"bundle": bundle, "underlying": underlying, "extra_counts": extra_counts, "extra_values": extra_values}
         print(f"    suggestion: {bundle['suggestion']!r}")
         print(f"    firm_up: {bundle['firm_up']!r}")
         print(f"    caveat: {bundle.get('caveat')!r}")
@@ -303,36 +310,203 @@ def test_no_directive_language(bundles):
 
 
 # ---------------------------------------------------------------------------
-# Prove the test can actually fail: mutate one number in a real headline
-# and confirm check_headline() catches it.
+# Prove the test can actually fail: for EACH of the 33 presenters, mutate
+# one number in its headline and confirm check_headline() catches it.
+#
+# The mutation target must be a genuine CLAIMED number (something
+# check_headline would actually extract and verify), not just the first
+# digit run anywhere in the string -- an earlier version mutated whatever
+# digits appeared first, which often landed inside a product name's unit
+# suffix (e.g. "...Baby Blue 460ml" -> "...Baby Blue 1047ml"). That digit
+# was never a claim to begin with (it's excluded from extraction by the
+# same word-boundary rule that stops "3000ml" from being flagged as a
+# false positive), so of course mutating it doesn't change the check's
+# verdict -- that's correct behaviour, not a gap. This version finds a
+# real claim by running the SAME entity-stripping + regex extraction
+# check_headline() uses, and only mutates a match from that.
+#
+# Headlines with no mutable CLAIM (e.g. a pure refusal, a "no candidates
+# found" bundle, or one whose only digits are inside entity names) are
+# reported separately, not silently skipped as passes.
 # ---------------------------------------------------------------------------
-def prove_test_catches_mutation():
-    raw = fbq.run_fixture_question(1)
-    bundle = p.PRESENTERS["demo_1"](raw)
-    good = bundle["headline"]
-    ok_before = check_headline("demo_1 (unmutated)", good, raw["data"], extra_counts=[len(raw["data"])])
+def _find_claimed_number_match(headline, underlying_data):
+    entity_strings = _all_strings(underlying_data)
+    stripped = _strip_entities(headline, entity_strings)
+    for regex in (CURRENCY_RE, PERCENT_RE, PLAIN_NUM_RE):
+        m = regex.search(stripped)
+        if m:
+            return m.group()
+    return None
 
-    # Mutate the units-sold figure to a value that does not appear anywhere
-    # in the underlying data (add 587 to make collision with a real number
-    # vanishingly unlikely).
-    mutated = re.sub(r"\b\d+\b", lambda m: str(int(m.group()) + 587), good, count=1)
-    ok_after = check_headline("demo_1 (MUTATED)", mutated, raw["data"], extra_counts=[len(raw["data"])])
+
+def _mutate_claim(original_headline, claim_substring):
+    mutated_claim = re.sub(r"\d+", lambda m: str(int(m.group()) + 587), claim_substring, count=1)
+    return original_headline.replace(claim_substring, mutated_claim, 1), mutated_claim
+
+
+def prove_test_catches_mutation_all(all_data):
+    survived, no_claim, results = [], [], []
+
+    for qid, d in all_data.items():
+        good = d["bundle"]["headline"]
+        underlying = d["underlying"]
+        ok_before = check_headline(f"{qid} (unmutated)", good, underlying,
+                                    extra_counts=d["extra_counts"], extra_values=d["extra_values"])
+
+        claim = _find_claimed_number_match(good, underlying)
+        if claim is None:
+            no_claim.append((qid, good))
+            continue
+
+        mutated, mutated_claim = _mutate_claim(good, claim)
+        ok_after = check_headline(f"{qid} (MUTATED: {claim!r} -> {mutated_claim!r})", mutated, underlying,
+                                   extra_counts=d["extra_counts"], extra_values=d["extra_values"])
+
+        passed = ok_before is True and ok_after is False
+        results.append((qid, ok_before, ok_after, passed))
+        if not passed:
+            survived.append((qid, good, mutated, ok_before, ok_after))
 
     print()
-    print(f"Mutation proof -- unmutated headline passed: {ok_before} (expected True)")
-    print(f"Mutation proof -- mutated headline passed:   {ok_after} (expected False)")
-    return ok_before is True and ok_after is False
+    print(f"[mutation-proof-all] checked {len(results)} presenters with a genuine claimed number, "
+          f"{len(no_claim)} had no claimed number to mutate.")
+    print(f"[mutation-proof-all] survived (test FAILED to catch the mutation): {len(survived)}")
+    for s in survived:
+        print("   ", s)
+    if no_claim:
+        print(f"[mutation-proof-all] no claimed number present, mutation not attempted: {[qid for qid, _ in no_claim]}")
+
+    return len(survived) == 0, survived, no_claim
+
+
+# ---------------------------------------------------------------------------
+# Ranking check: where a headline uses a superlative keyword (top/highest/
+# lowest/best/worst/most/least/strongest/weakest), assert the entity it
+# names is actually first (or last) when the underlying rows are sorted by
+# the metric that headline is claiming to rank on. Each spec below
+# independently re-derives the correct top/bottom row from raw["data"] --
+# it does NOT trust the presenter's own sort/filter logic.
+# ---------------------------------------------------------------------------
+SUPERLATIVE_KEYWORDS = ("top", "highest", "lowest", "best", "worst", "most", "least", "strongest", "weakest")
+_KEYWORD_RE = re.compile(r"\b(" + "|".join(SUPERLATIVE_KEYWORDS) + r")\b", re.IGNORECASE)
+
+
+def _demo3_expected_category(rows):
+    by_cat = {}
+    for r in rows:
+        by_cat.setdefault(r["category"], {})[r["side"]] = r["total_revenue"]
+    best_cat, best_margin = None, None
+    for cat, sides in by_cat.items():
+        if "own" in sides and "competitor" in sides:
+            margin = sides["own"] - sides["competitor"]
+            if best_margin is None or margin > best_margin:
+                best_margin, best_cat = margin, cat
+    return best_cat
+
+
+def _demo8_expected_category(rows):
+    # Mirrors fixture_business_queries.q8's own sort key: None ratio sorts
+    # last, otherwise highest ratio first.
+    candidates = [r for r in rows if r["stock_to_sales_ratio"] is not None]
+    if not candidates:
+        return rows[0]["category"] if rows else None
+    return max(candidates, key=lambda r: r["stock_to_sales_ratio"])["category"]
+
+
+RANKING_SPECS = {
+    "demo_3": {"custom": _demo3_expected_category},
+    "demo_4": {"name_field": "product_name", "key": lambda r: r["days_of_stock_remaining"], "mode": "min"},
+    "demo_7": {"name_field": "product_name", "key": lambda r: r["margin_volume_score"], "mode": "max"},
+    "demo_8": {"custom": _demo8_expected_category},
+    "demo_11": {"name_field": "channel", "key": lambda r: float(r["revenue"]), "mode": "max"},
+    "demo_13": {"name_field": "channel", "key": lambda r: float(r["revenue"]), "mode": "max"},
+    "demo_14": {"name_field": "channel", "key": lambda r: r["avg_return_rate"] or 0, "mode": "max"},
+    "demo_15": {"name_field": "brand_name", "key": lambda r: r["unavailable_pct"] or 0, "mode": "max",
+                "filter": lambda r: r["brand_name"] != "Nestasia"},
+    "demo_16": {"name_field": "product_name", "key": lambda r: r["attributed_orders"], "mode": "max",
+                "default_name": "an unattributed product"},
+    "demo_17": {"name_field": "product_name", "key": lambda r: r["orders_per_rupee_spend"] or 0, "mode": "max"},
+    "demo_19": {"name_field": "platform", "key": lambda r: r["likes"], "mode": "max"},
+    "demo_20": {"name_field": "brand_name", "key": lambda r: r["n_ads"], "mode": "max"},
+    "demo_21": {"name_field": "product_name", "key": lambda r: r["priority_score"], "mode": "max"},
+    "demo_22": {"name_field": "category", "key": lambda r: r["total_stock"], "mode": "max"},
+    "demo_24": {"name_field": "category", "key": lambda r: r["top_competitor_revenue"] - r["own_revenue"], "mode": "max"},
+    "demo_25": {"name_field": "product_name", "key": lambda r: r["cut_candidate_score"], "mode": "min"},
+}
+
+
+def _ranking_expected_name(qid, rows):
+    spec = RANKING_SPECS[qid]
+    if "custom" in spec:
+        return spec["custom"](rows)
+    candidates = [r for r in rows if spec.get("filter", lambda _r: True)(r)]
+    if not candidates:
+        return None
+    fn = max if spec["mode"] == "max" else min
+    best = fn(candidates, key=spec["key"])
+    return best.get(spec["name_field"]) or spec.get("default_name")
+
+
+def check_all_rankings(all_data):
+    verified, failed, unverifiable = [], [], []
+
+    for qid, d in all_data.items():
+        headline = d["bundle"]["headline"]
+        if not _KEYWORD_RE.search(headline):
+            continue
+        if qid not in RANKING_SPECS:
+            unverifiable.append((qid, headline))
+            continue
+        rows = d["underlying"] if isinstance(d["underlying"], list) else None
+        if rows is None:
+            unverifiable.append((qid, headline))
+            continue
+        expected = _ranking_expected_name(qid, rows)
+        if expected is None:
+            unverifiable.append((qid, headline))
+            continue
+        if expected in headline:
+            verified.append((qid, expected))
+        else:
+            failed.append((qid, headline, expected))
+
+    print()
+    print(f"[ranking-check] headlines with a superlative keyword: {len(verified) + len(failed) + len(unverifiable)}")
+    print(f"[ranking-check] verified correct: {len(verified)}")
+    for v in verified:
+        print("   ", v)
+    print(f"[ranking-check] FAILED (named entity is not actually top/bottom): {len(failed)}")
+    for f in failed:
+        print("   ", f)
+    print(f"[ranking-check] could not verify automatically: {len(unverifiable)}")
+    for u in unverifiable:
+        print("   ", u)
+
+    return len(failed) == 0, failed, unverifiable
+
+
+def print_all_headlines(all_data):
+    print()
+    print("=" * 70)
+    print("All 33 headlines")
+    print("=" * 70)
+    for qid in [f"demo_{n}" for n in range(1, 26)] + [f"live_{n}" for n in range(1, 9)]:
+        print(f"[{qid}] {all_data[qid]['bundle']['headline']}")
 
 
 if __name__ == "__main__":
     headline_ok = main()
-    proof_ok = prove_test_catches_mutation()
-    print("MUTATION PROOF: " + ("PASSED" if proof_ok else "FAILED -- the test cannot detect a wrong number!"))
     directive_ok, hard_failures, review_list = test_no_directive_language(ALL_BUNDLES)
+    mutation_ok, survived, no_claim = prove_test_catches_mutation_all(ALL_DATA)
+    ranking_ok, ranking_failed, ranking_unverifiable = check_all_rankings(ALL_DATA)
+    print_all_headlines(ALL_DATA)
 
     print()
     print("=" * 70)
     print(f"Headline-number check over all 33 presenters: {'PASSED' if headline_ok else 'FAILED'}")
-    print(f"Mutation-detection proof:                      {'PASSED' if proof_ok else 'FAILED'}")
+    print(f"Mutation-detection proof (all 33):             {'PASSED' if mutation_ok else 'FAILED'} "
+          f"({len(no_claim)} had no claimed number to mutate)")
+    print(f"Ranking check:                                  {'PASSED' if ranking_ok else 'FAILED'} "
+          f"({len(ranking_unverifiable)} could not be verified automatically)")
     print(f"Directive-language hard check:                 {'PASSED' if directive_ok else 'FAILED'}")
     print(f"Imperative-verb sentences flagged for review:   {len(review_list)}")
