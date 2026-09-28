@@ -691,6 +691,26 @@ _NOT_RANDOM_NOISE_NOTE = (
 
 _SALES_MARGIN_TABLES = {"sales_data", "margin_data", "inventory_data", "channel_performance"}
 
+# ---------------------------------------------------------------------------
+# Decision-shaped questions: the system supplies ranked evidence, the team
+# makes the call. Q8/Q13/Q17/Q21/Q22/Q25 were flagged by the user as
+# reading like directives ("you should cut X", "increase spend on Y"); Q1
+# was found during review ("which products should we prioritize" has the
+# same shape. Each gets one neutral, fixed framing line naming the ranking
+# metric and stating explicitly that the decision is the team's -- this
+# replaces any instruction-toned reading without hiding or softening the
+# ranking itself.
+# ---------------------------------------------------------------------------
+_DECISION_SHAPED_FRAMING = {
+    1: "Candidates above, ranked by units sold (highest first). Which to actually promote is a decision for your team.",
+    8: "Categories above, ranked by stock-to-sales ratio (highest first = most inventory relative to demand). Whether to run a promotion, and on which category, is a decision for your team.",
+    13: "Quick-commerce channel figures above. Whether to expand assortment there is a decision for your team.",
+    17: "Ads above, ranked by orders-per-rupee-spend (highest first). Whether to increase spend, and on which product, is a decision for your team -- and see the fabricated-attribution warning above before treating this ranking as solid ground for that decision.",
+    21: "Candidates above, ranked by a composite priority score (sales momentum x margin x stock risk x marketing). Which single product to actually prioritize is a decision for your team.",
+    22: "Category figures above. Which one thing to fix, and why, is a decision for your team -- this data is an input to that call, not the call itself.",
+    25: "Candidates above, ranked by a composite cut-risk score (lowest units-sold x margin first). Which SKUs to actually cut is a decision for your team.",
+}
+
 
 def _accuracy_label(sources):
     if not sources:
@@ -730,6 +750,12 @@ def _disclaimer_lines(sources, gap_explanation, special_note):
         lines.append(f"What this can't tell you: {gap_explanation}")
     if special_note:
         lines.append(f"Additional note: {special_note}")
+    if not lines:
+        # Every answer must carry at least one disclaimer line -- a card
+        # with zero synthetic data and zero gap is still worth one explicit
+        # line saying so, rather than silence (a screenshot of a bare card
+        # shouldn't be mistaken for one that skipped the disclaimer step).
+        lines.append("This answer is based entirely on real, non-synthetic data -- no fixture disclaimer applies.")
     return lines
 
 
@@ -801,8 +827,13 @@ def generate_fixture_business_answer(question_number):
         header = "Full answer:" if supported == "full" else "Partial answer (see gap below):"
         body = f"{header}\n{_format_data(result['data'])}"
 
+    decision_framing = _DECISION_SHAPED_FRAMING.get(question_number)
+
+    body_with_framing = "\n\n".join([body, *([decision_framing] if decision_framing else [])])
+
     answer = "\n\n".join([
-        body, citation, *disclaimers,
+        body_with_framing,
+        citation, *disclaimers,
         f"Accuracy: {accuracy}",
         f"Scope: {scope} -- {scope_missing}",
     ])
@@ -817,6 +848,8 @@ def generate_fixture_business_answer(question_number):
         "scope_missing": scope_missing,
         "citation": citation,
         "disclaimers": disclaimers,
+        "decision_framing": decision_framing,
+        "body": body_with_framing,
         "answer": answer,
         "raw_result": result,
         "templated": True,

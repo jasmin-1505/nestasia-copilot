@@ -471,16 +471,26 @@ def q10_pricing_hurting_conversion(cur):
     flagged = [r for r in rows if r["conversion_rate_pct"] < avg_rate * 0.6 and r["price"] is not None]
     flagged.sort(key=lambda r: r["conversion_rate_pct"])
     return {
-        "supported": "full",
+        "supported": "partial",
         "data": {"flagged_low_conversion_skus": flagged[:10], "brand_avg_conversion_rate_pct": round(avg_rate, 2)},
         "sources": [_src("traffic_data", "synthetic"), _src("channel_performance", "synthetic"), _src("price_history", "real")],
-        "special_note": ("This flags SKUs with conversion well below the brand average -- it "
-                          "does not itself prove PRICE is the cause (a low conversion rate could "
-                          "have other causes this schema also can't see, e.g. product images or "
-                          "reviews). traffic_data (sessions) is independently generated from "
-                          "sales_data/price, so this ratio is not circular, but 'priced in a way "
-                          "that's hurting conversion' still requires human judgement on the "
-                          "flagged list, not just the ratio."),
+        "gap_explanation": ("The conversion ratio is computable (traffic_data / channel_performance "
+                             "orders), but it is confounded with the sales generator's own "
+                             "price/discount -> volume rule (see circularity note below), so this "
+                             "cannot actually confirm or rule out a real pricing-conversion "
+                             "relationship -- only real, independently-collected traffic data "
+                             "could."),
+        "special_note": ("CIRCULARITY WARNING: traffic_data's sessions (the denominator) are "
+                          "generated independently of price, but orders (the numerator) come "
+                          "from channel_performance, which is itself derived from sales_data -- "
+                          "and sales_data's baseline units_sold was generated as a direct "
+                          "function of each SKU's real price percentile and discount_percent "
+                          "(cheaper/more-discounted SKUs get a higher baseline). So a SKU that "
+                          "looks 'low-conversion' here very likely just has a lower generator "
+                          "baseline (higher price, less discount), not an independently observed "
+                          "conversion problem. This is largely restating the generator's built-in "
+                          "price/discount -> volume rule, the same failure mode as Q18, not new "
+                          "evidence that price is hurting conversion."),
     }
 
 
@@ -770,6 +780,13 @@ def q23_quietly_becoming_problem(cur):
         "supported": "full",
         "data": declining[:10],
         "sources": [_src("sales_data", "synthetic")],
+        "special_note": ("NOISE-AS-SIGNAL WARNING: every SKU's period-over-period sales_data was "
+                          "generated with the SAME tiny global trend (+/-3%/month) and only "
+                          "independent per-period random noise (uniform 0.7-1.3x) on top. A SKU "
+                          "flagged here got a run of unlucky noise draws, not a real business "
+                          "decline -- this is a demonstration of what an early-warning detector "
+                          "would look like on real data, not a genuine early-warning finding on "
+                          "this demo data."),
     }
 
 

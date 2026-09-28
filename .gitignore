@@ -4,3 +4,5 @@ __pycache__/
 *.py[cod]
 confidential.txt
 *confidential*.txt
+rag/.router_embedding_cache.npz
+rag/.interaction_log.jsonl
