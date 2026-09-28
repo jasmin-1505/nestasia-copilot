@@ -753,6 +753,28 @@ def _format_data(data):
     return str(data)
 
 
+_SCOPE_LABELS = {"full": "Full", "partial": "Partial", "none": "Not supported"}
+
+
+def _scope_label(supported):
+    return _SCOPE_LABELS[supported]
+
+
+def _scope_missing_line(supported, gap_explanation):
+    """A second, INDEPENDENT label from the accuracy label -- accuracy is
+    about data TRUST (real vs. synthetic), scope is about whether the
+    question was actually answered in full. The two can and do diverge
+    (e.g. Q20: Verified data, but only Partial scope, because activity
+    isn't the same as effectiveness) -- deliberately never merged into one
+    badge."""
+    if supported == "full":
+        return (f"Nothing missing -- interpretation note: {gap_explanation}" if gap_explanation
+                else "Nothing missing.")
+    if supported == "partial":
+        return f"Missing: {gap_explanation}" if gap_explanation else "Missing: unspecified gap."
+    return f"Missing: {gap_explanation}" if gap_explanation else "Missing: entire question is unsupported."
+
+
 def generate_fixture_business_answer(question_number):
     """The only entry point for the 25 gold-set questions. Requires
     db_mode="fixture" implicitly by construction -- there is no production
@@ -769,6 +791,8 @@ def generate_fixture_business_answer(question_number):
     accuracy = _accuracy_label(sources) if supported != "none" or sources else "N/A -- unsupported by this schema"
     citation = _citation_line(sources)
     disclaimers = _disclaimer_lines(sources, result.get("gap_explanation"), result.get("special_note"))
+    scope = _scope_label(supported)
+    scope_missing = _scope_missing_line(supported, result.get("gap_explanation"))
 
     if supported == "none":
         body = (f"This question cannot be answered from the current fixture schema.\n\n"
@@ -777,7 +801,11 @@ def generate_fixture_business_answer(question_number):
         header = "Full answer:" if supported == "full" else "Partial answer (see gap below):"
         body = f"{header}\n{_format_data(result['data'])}"
 
-    answer = "\n\n".join([body, citation, *disclaimers, f"Accuracy: {accuracy}"])
+    answer = "\n\n".join([
+        body, citation, *disclaimers,
+        f"Accuracy: {accuracy}",
+        f"Scope: {scope} -- {scope_missing}",
+    ])
 
     return {
         "question_number": question_number,
@@ -785,6 +813,8 @@ def generate_fixture_business_answer(question_number):
         "db_mode": "fixture",
         "supported": supported,
         "accuracy_label": accuracy,
+        "scope_label": scope,
+        "scope_missing": scope_missing,
         "citation": citation,
         "disclaimers": disclaimers,
         "answer": answer,

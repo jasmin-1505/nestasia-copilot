@@ -171,6 +171,123 @@ def _ad_agg(cur, brand_names=None):
     return [dict(r) for r in cur.fetchall()]
 
 
+def _launch_dates(cur, brand_names=None):
+    where = f"{_BRAND_EXPR} = ANY(%s)" if brand_names else "TRUE"
+    params = [brand_names] if brand_names else []
+    cur.execute(
+        f"""
+        SELECT s.id AS sku_id, {_BRAND_EXPR} AS brand_name, s.product_name,
+               sld.launch_date, sld.is_synthetic
+        FROM sku_launch_data sld
+        JOIN sku s ON s.id = sld.sku_id
+        {_BRAND_JOIN}
+        WHERE {where}
+        """,
+        params,
+    )
+    return [dict(r) for r in cur.fetchall()]
+
+
+def _traffic_conversion(cur, brand_names=None):
+    """Per-SKU total sessions (traffic_data) vs. total orders
+    (channel_performance) -- conversion = orders / sessions. Both tables
+    are independently generated (different random streams, neither derived
+    from the other), so this ratio is not circular the way Q18's
+    discount-vs-sales comparison is."""
+    where = f"{_BRAND_EXPR} = ANY(%s)" if brand_names else "TRUE"
+    params = [brand_names] if brand_names else []
+    cur.execute(
+        f"""
+        WITH sessions AS (
+            SELECT sku_id, SUM(sessions) AS total_sessions FROM traffic_data GROUP BY sku_id
+        ),
+        orders AS (
+            SELECT sku_id, SUM(orders) AS total_orders FROM channel_performance GROUP BY sku_id
+        )
+        SELECT s.id AS sku_id, {_BRAND_EXPR} AS brand_name, s.product_name,
+               p.price, sessions.total_sessions, orders.total_orders
+        FROM sku s
+        {_BRAND_JOIN}
+        LEFT JOIN sessions ON sessions.sku_id = s.id
+        LEFT JOIN orders ON orders.sku_id = s.id
+        LEFT JOIN LATERAL (
+            SELECT price FROM price_history ph WHERE ph.sku_id = s.id ORDER BY collected_at DESC LIMIT 1
+        ) p ON TRUE
+        WHERE {where}
+        """,
+        params,
+    )
+    rows = [dict(r) for r in cur.fetchall()]
+    for r in rows:
+        if r["total_sessions"]:
+            r["conversion_rate_pct"] = round(100.0 * (r["total_orders"] or 0) / r["total_sessions"], 2)
+        else:
+            r["conversion_rate_pct"] = None
+    return rows
+
+
+def _channel_inventory_agg(cur, brand_names=None):
+    where = f"{_BRAND_EXPR} = ANY(%s)" if brand_names else "TRUE"
+    params = [brand_names] if brand_names else []
+    cur.execute(
+        f"""
+        SELECT s.id AS sku_id, {_BRAND_EXPR} AS brand_name, s.product_name,
+               ci.channel, ci.stock, ci.days_of_stock
+        FROM channel_inventory ci
+        JOIN sku s ON s.id = ci.sku_id
+        {_BRAND_JOIN}
+        WHERE {where}
+        """,
+        params,
+    )
+    return [dict(r) for r in cur.fetchall()]
+
+
+def _complaint_agg(cur, brand_names=None):
+    where = f"{_BRAND_EXPR} = ANY(%s)" if brand_names else "TRUE"
+    params = [brand_names] if brand_names else []
+    cur.execute(
+        f"""
+        SELECT cd.channel, {_BRAND_EXPR} AS brand_name,
+               SUM(cd.complaint_count) AS total_complaints,
+               mode() WITHIN GROUP (ORDER BY cd.top_reason) AS most_common_reason
+        FROM complaint_data cd
+        JOIN sku s ON s.id = cd.sku_id
+        {_BRAND_JOIN}
+        WHERE {where}
+        GROUP BY cd.channel, brand_name
+        ORDER BY cd.channel, brand_name
+        """,
+        params,
+    )
+    return [dict(r) for r in cur.fetchall()]
+
+
+def _ad_spend_agg(cur, brand_names=None):
+    """Joins ad_spend_data (fabricated sku_id attribution) to its ad and,
+    where matched, the SKU's real synthetic sales -- caller MUST surface
+    the fabrication warning, this function does not hide it but also does
+    not repeat it inline on every row."""
+    where = f"COALESCE(b.name, cb.name) = ANY(%s)" if brand_names else "TRUE"
+    params = [brand_names] if brand_names else []
+    cur.execute(
+        f"""
+        SELECT pac.id AS ad_id, COALESCE(b.name, cb.name) AS brand_name, pac.theme,
+               pac.product_subcategory, asd.sku_id, s.product_name,
+               asd.spend, asd.impressions, asd.clicks, asd.attributed_orders
+        FROM ad_spend_data asd
+        JOIN paid_ad_creative pac ON pac.id = asd.paid_ad_creative_id
+        LEFT JOIN brand b ON b.id = pac.brand_id
+        LEFT JOIN competitor_brand cb ON cb.id = pac.competitor_brand_id
+        LEFT JOIN sku s ON s.id = asd.sku_id
+        WHERE {where}
+        ORDER BY asd.spend DESC
+        """,
+        params,
+    )
+    return [dict(r) for r in cur.fetchall()]
+
+
 SOURCE_SYNTHETIC = {"table": None, "source_type": "synthetic"}
 SOURCE_REAL = {"table": None, "source_type": "real"}
 
@@ -237,15 +354,32 @@ def q4_bestsellers_at_risk(cur):
 
 
 def q5_recent_launches(cur):
+    launches = {r["sku_id"]: r for r in _launch_dates(cur, brand_names=[_OWN_BRAND])}
+    metrics = {r["sku_id"]: r for r in _sku_metrics(cur, brand_names=[_OWN_BRAND])}
+    sold_values = [r["units_sold"] for r in metrics.values() if r["units_sold"] is not None]
+    avg_units = sum(sold_values) / len(sold_values) if sold_values else 0
+
+    import datetime
+    today = datetime.date.today()
+    recent = []
+    for sku_id, l in launches.items():
+        m = metrics.get(sku_id)
+        if m is None or m["units_sold"] is None:
+            continue
+        days_since_launch = (today - l["launch_date"]).days
+        if days_since_launch <= 180 and m["units_sold"] < avg_units:
+            recent.append({"product_name": m["product_name"], "launch_date": l["launch_date"],
+                            "days_since_launch": days_since_launch, "units_sold": m["units_sold"],
+                            "brand_avg_units_sold": round(avg_units, 1)})
+    recent.sort(key=lambda r: r["units_sold"])
     return {
-        "supported": "none",
-        "data": [],
-        "gap_explanation": ("No table tracks a true product-launch date. sku.created_at only "
-                             "records when this project's collector first inserted the row -- "
-                             "it reflects OUR crawl history, not when the product actually "
-                             "launched on the brand's site. Answering this would require a "
-                             "real launch-date field, which does not exist in this schema."),
-        "sources": [],
+        "supported": "full",
+        "data": recent[:10],
+        "sources": [_src("sku_launch_data", "synthetic"), _src("sales_data", "synthetic")],
+        "special_note": ("sku_launch_data.launch_date is entirely fabricated -- no real "
+                          "launch-date field exists anywhere in this schema. This answer is "
+                          "structurally sound (recent + below-average-sales), but the dates "
+                          "themselves are demo placeholders, not real launch history."),
     }
 
 
@@ -331,15 +465,22 @@ def q9_profitability_cookware_vs_bakeware(cur):
 
 
 def q10_pricing_hurting_conversion(cur):
+    rows = [r for r in _traffic_conversion(cur, brand_names=[_OWN_BRAND]) if r["conversion_rate_pct"] is not None]
+    rates = [r["conversion_rate_pct"] for r in rows]
+    avg_rate = sum(rates) / len(rates) if rates else 0
+    flagged = [r for r in rows if r["conversion_rate_pct"] < avg_rate * 0.6 and r["price"] is not None]
+    flagged.sort(key=lambda r: r["conversion_rate_pct"])
     return {
-        "supported": "none",
-        "data": [],
-        "gap_explanation": ("No table anywhere in this schema tracks visits, sessions, or page "
-                             "traffic. channel_performance has 'orders' but no denominator "
-                             "(visits/sessions) to compute a conversion rate from -- there is "
-                             "literally no numerator/denominator pair available. Answering this "
-                             "would require adding a traffic or session-count field."),
-        "sources": [],
+        "supported": "full",
+        "data": {"flagged_low_conversion_skus": flagged[:10], "brand_avg_conversion_rate_pct": round(avg_rate, 2)},
+        "sources": [_src("traffic_data", "synthetic"), _src("channel_performance", "synthetic"), _src("price_history", "real")],
+        "special_note": ("This flags SKUs with conversion well below the brand average -- it "
+                          "does not itself prove PRICE is the cause (a low conversion rate could "
+                          "have other causes this schema also can't see, e.g. product images or "
+                          "reviews). traffic_data (sessions) is independently generated from "
+                          "sales_data/price, so this ratio is not circular, but 'priced in a way "
+                          "that's hurting conversion' still requires human judgement on the "
+                          "flagged list, not just the ratio."),
     }
 
 
@@ -354,19 +495,17 @@ def q11_channel_driving_revenue(cur):
 
 
 def q12_out_of_stock_specific_channel(cur):
-    channels = _distinct_channels(cur)
-    high_demand = [r for r in _sku_metrics(cur, brand_names=[_OWN_BRAND])
-                   if r["units_sold"] and r["current_stock"] is not None and r["current_stock"] < 5]
+    rows = _channel_inventory_agg(cur, brand_names=[_OWN_BRAND])
+    flagged = [r for r in rows if r["stock"] is not None and r["stock"] < 5]
+    flagged.sort(key=lambda r: r["stock"])
     return {
-        "supported": "partial",
-        "data": {"low_stock_high_demand_skus": high_demand[:10], "known_channels": channels},
-        "gap_explanation": ("inventory_data tracks stock PER-SKU ONLY, with no channel column -- "
-                             "there is no way to know whether a given unit of stock sits in the "
-                             "warehouse feeding one channel vs. another. The SKUs listed are low "
-                             "on OVERALL stock and selling well, but which channel(s) would "
-                             "actually see it go out of stock first cannot be determined from "
-                             "this schema."),
-        "sources": [_src("inventory_data", "synthetic"), _src("sales_data", "synthetic")],
+        "supported": "full",
+        "data": flagged[:10],
+        "sources": [_src("channel_inventory", "synthetic")],
+        "special_note": ("channel_inventory.stock is a synthetic per-channel SPLIT of each SKU's "
+                          "total inventory_data.current_stock (random weights) -- it is not an "
+                          "independently observed per-channel stock count, since no real system "
+                          "in this project tracks warehouse allocation by channel."),
     }
 
 
@@ -398,17 +537,25 @@ def q13_expand_qcommerce(cur):
 
 
 def q14_highest_return_rate(cur):
-    rows = _channel_agg(cur, brand_names=[_OWN_BRAND])
-    rows.sort(key=lambda r: r["avg_return_rate"] or 0, reverse=True)
+    return_rows = {r["channel"]: r for r in _channel_agg(cur, brand_names=[_OWN_BRAND])}
+    complaint_rows = {r["channel"]: r for r in _complaint_agg(cur, brand_names=[_OWN_BRAND])}
+    merged = []
+    for ch in set(return_rows) | set(complaint_rows):
+        merged.append({
+            "channel": ch,
+            "avg_return_rate": return_rows.get(ch, {}).get("avg_return_rate"),
+            "total_complaints": complaint_rows.get(ch, {}).get("total_complaints"),
+            "most_common_complaint_reason": complaint_rows.get(ch, {}).get("most_common_reason"),
+        })
+    merged.sort(key=lambda r: (r["avg_return_rate"] or 0), reverse=True)
     return {
-        "supported": "partial",
-        "data": rows,
-        "gap_explanation": ("channel_performance has 'return_rate' but no separate 'complaint' "
-                             "or customer-service-ticket field. This answer covers RETURN RATE "
-                             "only -- it does not know whether complaint volume tracks returns "
-                             "1:1 (a customer can complain without returning, or return without "
-                             "complaining)."),
-        "sources": [_src("channel_performance", "synthetic")],
+        "supported": "full",
+        "data": merged,
+        "sources": [_src("channel_performance", "synthetic"), _src("complaint_data", "synthetic")],
+        "special_note": ("return_rate and complaint_count are generated INDEPENDENTLY (different "
+                          "random streams) -- by design they can disagree on which channel is "
+                          "'worst', the same way they can in reality. Report both, don't collapse "
+                          "them into one number."),
     }
 
 
@@ -436,37 +583,39 @@ def q15_competitor_availability(cur):
 
 
 def q16_ad_campaign_driving_sales(cur):
-    ads = _ad_agg(cur)
-    sales = _sku_metrics(cur)
-    sales_by_brand = {}
-    for r in sales:
-        if r["revenue"] is None:
-            continue
-        sales_by_brand[r["brand_name"]] = sales_by_brand.get(r["brand_name"], 0) + float(r["revenue"])
+    rows = _ad_spend_agg(cur, brand_names=[_OWN_BRAND])
+    for r in rows:
+        r["orders_per_1000_impressions"] = (round(1000.0 * r["attributed_orders"] / r["impressions"], 2)
+                                             if r["impressions"] else None)
+    rows.sort(key=lambda r: r["attributed_orders"], reverse=True)
     return {
         "supported": "partial",
-        "data": {"ad_activity_by_brand_theme": ads,
-                  "total_synthetic_revenue_by_brand": [{"brand": k, "revenue": round(v, 2)} for k, v in sales_by_brand.items()]},
-        "gap_explanation": ("paid_ad_creative has NO sku_id column -- ads link only to a brand, "
-                             "never to an individual product. There is also no per-ad sales "
-                             "attribution window (most ads have end_date=NULL, i.e. still "
-                             "'Active', so there's no clean before/after period to compare "
-                             "against). This can show ad activity next to a brand's total "
-                             "synthetic sales, but CANNOT attribute any specific sale to any "
-                             "specific campaign."),
-        "sources": [_src("paid_ad_creative", "real"), _src("sales_data", "synthetic")],
+        "data": rows,
+        "gap_explanation": ("attributed_orders (and the sku_id each ad is linked to) come from "
+                             "ad_spend_data, which FABRICATES the ad-to-product link -- "
+                             "paid_ad_creative has no sku_id in reality, so which product each "
+                             "real ad actually drove sales for is unknown. This ranks ads by a "
+                             "synthetic attributed-orders figure, not a real, observed one."),
+        "sources": [_src("paid_ad_creative", "real"), _src("ad_spend_data", "synthetic")],
     }
 
 
 def q17_increase_ad_spend(cur):
+    rows = _ad_spend_agg(cur, brand_names=[_OWN_BRAND])
+    for r in rows:
+        r["orders_per_rupee_spend"] = round(r["attributed_orders"] / float(r["spend"]), 4) if r["spend"] else None
+    rows = [r for r in rows if r["sku_id"] is not None]
+    rows.sort(key=lambda r: r["orders_per_rupee_spend"] or 0, reverse=True)
     return {
-        "supported": "none",
-        "data": [],
-        "gap_explanation": ("paid_ad_creative has no spend/budget column at all, and no sku_id "
-                             "to link an ad to a product. There is no baseline spend figure to "
-                             "reference, so a spend-increase recommendation cannot be grounded "
-                             "in this data at all -- not even partially."),
-        "sources": [],
+        "supported": "partial",
+        "data": rows[:10],
+        "gap_explanation": ("spend and attributed_orders are entirely synthetic (ad_spend_data), "
+                             "and the sku_id each ad is linked to is a FABRICATED assignment, not "
+                             "a real fact (paid_ad_creative has no spend or sku_id column in "
+                             "reality). Any 'increase spend on X' conclusion drawn from this is "
+                             "for demo purposes only -- there is no real baseline spend figure "
+                             "behind it."),
+        "sources": [_src("ad_spend_data", "synthetic")],
     }
 
 
@@ -528,24 +677,34 @@ def q20_competitor_promotional_approach(cur):
 
 def q21_prioritize_single_product(cur):
     rows = _sku_metrics(cur, brand_names=[_OWN_BRAND])
+    ad_rows = _ad_spend_agg(cur, brand_names=[_OWN_BRAND])
+    ad_orders_by_sku = {}
+    for r in ad_rows:
+        if r["sku_id"] is not None:
+            ad_orders_by_sku[r["sku_id"]] = ad_orders_by_sku.get(r["sku_id"], 0) + r["attributed_orders"]
+
     scored = []
     for r in rows:
         if r["units_sold"] is None or r["margin_percent"] is None or r["days_of_stock_remaining"] is None:
             continue
         risk = 1.0 / max(float(r["days_of_stock_remaining"]), 1.0)
-        r["priority_score"] = round(r["units_sold"] * float(r["margin_percent"]) / 100.0 * (1 + risk), 2)
+        marketing_boost = 1 + 0.1 * ad_orders_by_sku.get(r["sku_id"], 0)
+        r["marketing_attributed_orders"] = ad_orders_by_sku.get(r["sku_id"], 0)
+        r["priority_score"] = round(r["units_sold"] * float(r["margin_percent"]) / 100.0 * (1 + risk) * marketing_boost, 2)
         scored.append(r)
     scored.sort(key=lambda r: r["priority_score"], reverse=True)
     return {
         "supported": "partial",
         "data": scored[:5],
-        "gap_explanation": ("Score combines sales momentum, margin, and stock risk (all "
-                             "synthetic). It does NOT factor in marketing/ad performance at the "
-                             "product level, because paid_ad_creative has no sku_id -- ads "
-                             "cannot be linked to individual products at all, so the "
-                             "'marketing' leg of this cross-cutting question is structurally "
-                             "unanswerable per-SKU."),
-        "sources": [_src("sales_data", "synthetic"), _src("margin_data", "synthetic"), _src("inventory_data", "synthetic")],
+        "gap_explanation": ("Score combines sales momentum, margin, stock risk, and a marketing "
+                             "leg from ad_spend_data.attributed_orders -- but that marketing leg "
+                             "rests on a FABRICATED ad-to-SKU link (paid_ad_creative has no sku_id "
+                             "in reality, so ad_spend_data invents which product each ad "
+                             "'targets'). The sales/margin/stock legs are ordinary synthetic "
+                             "data; the marketing leg specifically is demo scaffolding, not a "
+                             "recovered fact, which is why this stays Partial rather than Full."),
+        "sources": [_src("sales_data", "synthetic"), _src("margin_data", "synthetic"),
+                    _src("inventory_data", "synthetic"), _src("ad_spend_data", "synthetic")],
     }
 
 
