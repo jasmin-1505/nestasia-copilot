@@ -273,6 +273,14 @@ file. This has NOT been decided -- do not change Bakeware's
 collection (if either) this project should treat as Bakeware going
 forward.
 
+**DECIDED (2026-09-29): `/collections/bakeware` is this project's
+definition of Bakeware.** `/collections/serveware-bakeware` is excluded --
+it is a separate, merged marketing category (serveware + bakeware
+cross-listed together), not a narrower or more accurate view of the
+Bakeware subcategory this project tracks. See the investigation below for
+whether the 392-vs-3 gap on `/collections/bakeware` itself is the same
+pagination bug confirmed for Cookware.
+
 **Not yet fixed (as of the original entry above).** Before scaling to a full
 5-subcategory run, or before trusting any "0 mismatches" result on a
 collection whose true size wasn't independently checked,
