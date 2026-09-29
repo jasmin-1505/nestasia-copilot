@@ -674,18 +674,28 @@ def present_live_price_comparison(typed_text):
         [own_row["brand_name"], own_row["category_name"], format_inr(own_row["avg_price"]), own_row["priced_skus"]],
         [comp_row["brand_name"], comp_row["category_name"], format_inr(comp_row["avg_price"]), comp_row["priced_skus"]],
     ], kind="real")
+
+    incomplete_sides = [r for r in (own_row, comp_row) if not r.get("all_complete", True)]
+    caveat = None
+    if incomplete_sides:
+        names = " and ".join(f"{r['brand_name']}'s {r['category_name']}" for r in incomplete_sides)
+        caveat = (f"{names} collection is confirmed incomplete (fewer SKUs on file than the site "
+                  f"actually lists) -- this average is real but not the whole category.")
+
     return {
         "headline": headline,
         "visual": visual,
         "suggestion": "A price comparison, not a pricing recommendation -- any change is a decision for your team.",
-        "firm_up": "This is already real, live-collected pricing data -- no further confirmation needed beyond re-collecting if prices have since changed.",
+        "firm_up": ("This is already real, live-collected pricing data, but re-collect the incomplete "
+                    "side(s) before treating this average as final." if incomplete_sides else
+                    "This is already real, live-collected pricing data -- no further confirmation needed beyond re-collecting if prices have since changed."),
         "sources": [
             {"label": f"{own_row['brand_name']} price data", "url": None,
              "as_of": format_date(own_row.get("latest_collected_at")), "kind": "real"},
             {"label": f"{comp_row['brand_name']} price data", "url": None,
              "as_of": format_date(comp_row.get("latest_collected_at")), "kind": "real"},
         ],
-        "caveat": None,
+        "caveat": caveat,
     }
 
 

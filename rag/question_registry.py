@@ -124,8 +124,11 @@ def _demo_entry(n):
 # on the ACTUAL typed text to extract brand/category entities, so a
 # paraphrase naming a different brand still resolves correctly.
 _LIVE_QUESTIONS = [
-    ("How does our Cookware pricing compare to Home Centre's?", "Full",
-     "intent=price_comparison; brand/category parsed from the literal question text."),
+    ("How does our Cookware pricing compare to Home Centre's?", "Partial",
+     "intent=price_comparison; brand/category parsed from the literal question text. "
+     "Downgraded from Full: Nestasia's Cookware collection is confirmed under-collected "
+     "(site counter reads 88 products, only 12 are on file) and collection_complete=False "
+     "as of 2026-09-27 -- the 12 SKUs priced here are real but not the whole category."),
     ("Which of our products show a stock-display inconsistency?", "Partial",
      "intent=stock_mismatch_lookup(Nestasia); some categories (Container, Lunch Boxes+Bags) are still incomplete."),
     ("Does Milton have the same stock-display bug we do?", "Full",
