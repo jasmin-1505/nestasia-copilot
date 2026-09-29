@@ -570,12 +570,26 @@ def q14_highest_return_rate(cur):
 
 
 def q15_competitor_availability(cur):
+    # Was: stock_status_tag ILIKE '%out%' OR actual_button_state ILIKE
+    # '%disabled%' OR actual_button_state ILIKE '%sold%'. Dropped the
+    # actual_button_state clauses -- naive substring matching on free-text
+    # button-state descriptions false-positives on negated phrases: Borosil's
+    # "Add to Cart (button active, not disabled)" contains "disabled" (61/63
+    # rows wrongly counted unavailable, pushing Borosil to a false 100%);
+    # Milton's "Unknown (no add-to-cart control or sold-out badge visible on
+    # this card)" contains "sold" (14 rows wrongly counted unavailable, out
+    # of 41 -> corrected to 27). Wonderchef and Prestige were unaffected
+    # (their button-state text never contains those substrings). This is
+    # entirely separate from the stock_mismatch column used by the confirmed
+    # Milton/Borosil bug findings -- that logic lives in
+    # competitor_collector.py's per-platform _is_mismatch functions, which
+    # already use precise checks (e.g. actual_button_state.startswith("Add
+    # to Cart")) specifically to avoid this exact substring trap.
     cur.execute(
         f"""
         SELECT {_BRAND_EXPR} AS brand_name,
                COUNT(*) AS total_skus,
-               COUNT(*) FILTER (WHERE s.stock_status_tag ILIKE '%%out%%' OR s.actual_button_state ILIKE '%%disabled%%'
-                                 OR s.actual_button_state ILIKE '%%sold%%') AS unavailable_skus
+               COUNT(*) FILTER (WHERE s.stock_status_tag ILIKE '%%out%%') AS unavailable_skus
         FROM sku s
         {_BRAND_JOIN}
         GROUP BY brand_name

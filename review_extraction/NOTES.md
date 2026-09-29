@@ -263,6 +263,16 @@ queries.py Step-1 report from this date) rather than a confirmation of
 this same pagination bug. Nestasia Cookware's 12 SKUs have been marked
 `collection_complete=False` in both production and fixture as a result.
 
+**OPEN QUESTION for human review -- which collection is "Bakeware"?**
+nestasia.in has two distinct collections that could both plausibly be
+"Bakeware": `/collections/bakeware` (392 results) and
+`/collections/serveware-bakeware` (546 results, mostly serving bowls, not
+baking equipment). Neither count reconciles with the 3-SKU baseline on
+file. This has NOT been decided -- do not change Bakeware's
+`collection_complete` flag or re-collect it until a person picks which
+collection (if either) this project should treat as Bakeware going
+forward.
+
 **Not yet fixed (as of the original entry above).** Before scaling to a full
 5-subcategory run, or before trusting any "0 mismatches" result on a
 collection whose true size wasn't independently checked,
