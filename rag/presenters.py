@@ -148,6 +148,27 @@ def _completeness_caveat(raw):
             f"counts, and rankings here are drawn from that same undercount, not a full catalogue.")
 
 
+def _pairwise_completeness_caveat(raw, cat_a, cat_b):
+    """For a presenter that names exactly two categories and puts them
+    head-to-head (e.g. "X is more profitable than Y") -- the generic
+    _completeness_caveat's "totals/counts/rankings" wording doesn't fit a
+    straight two-way comparison, and burying WHICH side is weaker inside a
+    generic sentence undersells that the comparison itself may be unfair,
+    not just imprecise. Checks both category names independently rather
+    than assuming only one can ever be the incomplete one."""
+    incomplete = set(raw.get("incomplete_categories_included") or [])
+    a_bad, b_bad = cat_a in incomplete, cat_b in incomplete
+    if not a_bad and not b_bad:
+        return None
+    if a_bad and b_bad:
+        return (f"This comparison isn't on equal footing: BOTH {cat_a}'s and {cat_b}'s real Nestasia "
+                f"collections are confirmed incomplete -- neither side reflects the full real catalogue.")
+    weak, strong = (cat_a, cat_b) if a_bad else (cat_b, cat_a)
+    return (f"This comparison isn't on equal footing: {weak}'s real Nestasia collection is confirmed "
+            f"incomplete, while {strong}'s data reflects a fuller collection -- treat this margin gap "
+            f"with that in mind, not as a fair apples-to-apples reading.")
+
+
 def _combine_caveats(*parts):
     parts = [p for p in parts if p]
     return " ".join(parts) if parts else None
@@ -355,7 +376,7 @@ def present_demo_9(raw):
         "suggestion": "A margin comparison between two categories, not a resourcing recommendation.",
         "firm_up": "Confirm unit_cost against real supplier/COGS records -- margin_percent here is a synthetic estimate.",
         "sources": _demo_sources(["margin_data"]),
-        "caveat": _completeness_caveat(raw),
+        "caveat": _pairwise_completeness_caveat(raw, "Cookware", "Bakeware"),
     }
 
 
