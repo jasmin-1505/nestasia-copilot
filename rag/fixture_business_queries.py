@@ -860,12 +860,34 @@ QUESTION_HANDLERS = {
 }
 
 
+def _incomplete_categories(cur, brand_name, categories):
+    """Which of `categories` are confirmed incomplete for `brand_name`'s
+    real, collected catalogue -- independent of whatever this specific
+    question's SQL groups or filters by. Computed once per question run
+    (cheap, one extra query) rather than threading a category-completeness
+    check through every individual handler's own SQL, since almost every
+    Nestasia-wide aggregate touches the full catalogue regardless of
+    whether it happens to break results out by category."""
+    cur.execute(
+        """
+        SELECT DISTINCT c.name FROM sku s
+        JOIN brand b ON b.id = s.brand_id
+        JOIN sku_category sc ON sc.sku_id = s.id
+        JOIN category c ON c.id = sc.category_id
+        WHERE b.name = %s AND c.name = ANY(%s) AND NOT s.collection_complete
+        """,
+        (brand_name, list(categories)),
+    )
+    return sorted(r["name"] for r in cur.fetchall())
+
+
 def run_fixture_question(question_number):
     if question_number not in QUESTION_HANDLERS:
         raise ValueError(f"No handler for question_number={question_number!r}; valid range is 1-25.")
     conn, cur = _cur()
     try:
         result = QUESTION_HANDLERS[question_number](cur)
+        result["incomplete_categories_included"] = _incomplete_categories(cur, _OWN_BRAND, ("Cookware", "Bakeware"))
     finally:
         cur.close()
         conn.close()
