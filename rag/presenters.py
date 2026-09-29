@@ -724,17 +724,29 @@ def _mismatch_bundle(typed_text, subject_brand, side):
          ["Ambiguous/Unknown", cls["skus_ambiguous_unknown"]]],
         kind="real",
     )
+    caveats = []
+    if not cls["brand_testable_for_mismatch"]:
+        caveats.append(f"{subject_brand} cannot be tested for this bug at all -- that is not the same as being clean.")
+    if not cls["all_collection_complete"]:
+        caveats.append(f"{subject_brand}'s own product collection is confirmed incomplete -- this result reflects "
+                        f"only what's been collected so far, not a guaranteed reading across every product.")
+
+    if cls["brand_testable_for_mismatch"]:
+        firm_up = ("This is already real, live-collected data, but re-collect the rest of this brand's catalogue "
+                    "before treating this result as final." if not cls["all_collection_complete"] else
+                    "This is already real, live-collected data -- no further confirmation needed beyond re-testing "
+                    "if the site has since changed.")
+    else:
+        firm_up = "This brand's site architecture gives no on-page signal to test at all -- it cannot be firmed up without a different collection method."
+
     return {
         "headline": headline,
         "visual": visual,
         "suggestion": "A factual test result, not a recommendation.",
-        "firm_up": ("This is already real, live-collected data -- no further confirmation needed beyond re-testing "
-                     "if the site has since changed.") if cls["brand_testable_for_mismatch"] else
-                    "This brand's site architecture gives no on-page signal to test at all -- it cannot be firmed up without a different collection method.",
+        "firm_up": firm_up,
         "sources": [{"label": f"{subject_brand} stock-display data", "url": None,
                      "as_of": format_date(cls.get("latest_collected_at")), "kind": "real"}],
-        "caveat": None if cls["brand_testable_for_mismatch"] else
-                  f"{subject_brand} cannot be tested for this bug at all -- that is not the same as being clean.",
+        "caveat": " ".join(caveats) if caveats else None,
     }
 
 
@@ -760,23 +772,34 @@ def present_live_6(typed_text):
     testable = {b: c for b, c in comp_cls.items() if c["brand_testable_for_mismatch"]}
     untestable = {b: c for b, c in comp_cls.items() if not c["brand_testable_for_mismatch"]}
     with_bug = {b: c for b, c in testable.items() if c["brand_has_confirmed_mismatch"]}
+    incomplete_testable = {b: c for b, c in testable.items() if not c["all_collection_complete"]}
     headline = (f"{len(with_bug)} of {len(testable)} testable tracked competitor(s) show a confirmed "
                 f"stock-display mismatch; {len(untestable)} cannot be tested.")
     visual = _table(
-        ["Brand", "Testable", "Confirmed mismatch"],
+        ["Brand", "Testable", "Confirmed mismatch", "Collection complete"],
         [[b, "Yes" if c["brand_testable_for_mismatch"] else "No",
-          ("Yes" if c["brand_has_confirmed_mismatch"] else "No") if c["brand_testable_for_mismatch"] else "n/a"]
+          ("Yes" if c["brand_has_confirmed_mismatch"] else "No") if c["brand_testable_for_mismatch"] else "n/a",
+          "Yes" if c["all_collection_complete"] else "No"]
          for b, c in comp_cls.items()],
         kind="real",
     )
+    caveats = []
+    if untestable:
+        caveats.append(f"{len(untestable)} competitor(s) cannot be tested at all -- they are reported separately, "
+                        f"never folded into either the 'has bug' or 'clean' count.")
+    if incomplete_testable:
+        names = ", ".join(sorted(incomplete_testable))
+        caveats.append(f"{names}'s tracked collection is confirmed incomplete -- its result here reflects only "
+                        f"what's been collected so far, not a guaranteed reading across its whole catalogue.")
     return {
         "headline": headline,
         "visual": visual,
         "suggestion": "A factual tally across tracked competitors, not a recommendation.",
-        "firm_up": "This is already real, live-collected data across all tracked competitors -- no further confirmation needed beyond re-testing.",
+        "firm_up": ("This is already real, live-collected data across all tracked competitors, but re-collect the "
+                    "incomplete brand(s)' catalogues before treating their result as final." if incomplete_testable else
+                    "This is already real, live-collected data across all tracked competitors -- no further confirmation needed beyond re-testing."),
         "sources": [{"label": f"{b} stock-display data", "url": None, "as_of": None, "kind": "real"} for b in comp_cls],
-        "caveat": (f"{len(untestable)} competitor(s) cannot be tested at all -- they are reported separately, "
-                   f"never folded into either the 'has bug' or 'clean' count.") if untestable else None,
+        "caveat": " ".join(caveats) if caveats else None,
     }
 
 
