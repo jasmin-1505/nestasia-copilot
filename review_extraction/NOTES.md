@@ -248,6 +248,21 @@ Bakeware, Trivets, and apparently Cookware) were unaffected only because
 their true totals happen to fit on one page -- not because the script
 handled pagination correctly for them, it just never needed to prove it.
 
+**Update -- Cookware confirmed under-collected on 2026-09-27 (88 vs 12
+stored); the prior note assuming small categories were fine was untested
+for Cookware specifically.** A live page-1-only check of
+`/collections/cookware` (single request, not blocked, correct title)
+read "88 Cookware Results found" against 12 SKUs stored in production with
+`collection_complete=True`, collected 2026-09-22 -- a day before this
+file's fix was committed (`own_site_collector.py`, 2026-09-23). Kitchen
+Racks and Trivets held up under the same check (1 and 10 respectively,
+close to their known baselines); Bakeware's own counter read 392, which
+doesn't reconcile with its 3 stored SKUs either but looks like a separate,
+not-yet-understood collection-scoping issue (see the fixture_business_
+queries.py Step-1 report from this date) rather than a confirmation of
+this same pagination bug. Nestasia Cookware's 12 SKUs have been marked
+`collection_complete=False` in both production and fixture as a result.
+
 **Not yet fixed (as of the original entry above).** Before scaling to a full
 5-subcategory run, or before trusting any "0 mismatches" result on a
 collection whose true size wasn't independently checked,
