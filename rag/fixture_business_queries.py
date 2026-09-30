@@ -402,13 +402,13 @@ def q6_underpricing_vs_competitors(cur):
             "avg_price_by_category_brand": [{"category": k[0], "brand": k[1], "avg_price": round(v, 2)}
                                              for k, v in price_avgs.items()],
         },
-        "gap_explanation": ("Our own margin_percent is a synthetic estimate, not a real cost "
-                             "figure. Competitor prices shown are real (price_history), but "
-                             "competitor margin_percent -- also present in this fixture -- is "
-                             "NOT used here to claim 'they have more margin than us': a "
-                             "company's actual cost structure is not public information, so any "
-                             "competitor margin figure in this demo is a synthetic placeholder, "
-                             "never a real finding, no matter how it's phrased."),
+        "gap_explanation": ("Our own margin figure is a synthetic estimate, not a real cost "
+                             "figure. Competitor prices shown are real, but competitor margin -- "
+                             "also present in this fixture -- is NOT used here to claim 'they have "
+                             "more margin than us': a company's actual cost structure is not "
+                             "public information, so any competitor margin figure in this demo is "
+                             "a synthetic placeholder, never a real finding, no matter how it's "
+                             "phrased."),
         "sources": [_src("margin_data", "synthetic"), _src("price_history", "real")],
         "special_note": ("Competitor margin/cost data is fundamentally unknowable from public "
                           "sources in real life -- treat any competitor margin_percent value in "
@@ -474,7 +474,7 @@ def q10_pricing_hurting_conversion(cur):
         "supported": "partial",
         "data": {"flagged_low_conversion_skus": flagged[:10], "brand_avg_conversion_rate_pct": round(avg_rate, 2)},
         "sources": [_src("traffic_data", "synthetic"), _src("channel_performance", "synthetic"), _src("price_history", "real")],
-        "gap_explanation": ("The conversion ratio is computable (traffic_data / channel_performance "
+        "gap_explanation": ("The conversion ratio is computable (session traffic vs. channel "
                              "orders), but it is confounded with the sales generator's own "
                              "price/discount -> volume rule (see circularity note below), so this "
                              "cannot actually confirm or rule out a real pricing-conversion "
@@ -615,11 +615,11 @@ def q16_ad_campaign_driving_sales(cur):
     return {
         "supported": "partial",
         "data": rows,
-        "gap_explanation": ("attributed_orders (and the sku_id each ad is linked to) come from "
-                             "ad_spend_data, which FABRICATES the ad-to-product link -- "
-                             "paid_ad_creative has no sku_id in reality, so which product each "
-                             "real ad actually drove sales for is unknown. This ranks ads by a "
-                             "synthetic attributed-orders figure, not a real, observed one."),
+        "gap_explanation": ("The attributed-orders figure (and which product each ad is linked "
+                             "to) is fabricated -- real ad-library data has no per-product link at "
+                             "all, so which product each real ad actually drove sales for is "
+                             "unknown. This ranks ads by a synthetic attributed-orders figure, not "
+                             "a real, observed one."),
         "sources": [_src("paid_ad_creative", "real"), _src("ad_spend_data", "synthetic")],
     }
 
@@ -633,10 +633,10 @@ def q17_increase_ad_spend(cur):
     return {
         "supported": "partial",
         "data": rows[:10],
-        "gap_explanation": ("spend and attributed_orders are entirely synthetic (ad_spend_data), "
-                             "and the sku_id each ad is linked to is a FABRICATED assignment, not "
-                             "a real fact (paid_ad_creative has no spend or sku_id column in "
-                             "reality). Any 'increase spend on X' conclusion drawn from this is "
+        "gap_explanation": ("The spend and attributed-orders figures are entirely synthetic, and "
+                             "which product each ad is linked to is a FABRICATED assignment, not a "
+                             "real fact (real ad-library data has no spend figure or per-product "
+                             "link at all). Any 'increase spend on X' conclusion drawn from this is "
                              "for demo purposes only -- there is no real baseline spend figure "
                              "behind it."),
         "sources": [_src("ad_spend_data", "synthetic")],
@@ -656,14 +656,13 @@ def q18_festive_discount_campaigns(cur):
                   "avg_units_sold_full_price_skus": round(avg_full, 1) if avg_full is not None else None,
                   "n_discounted": len(discounted), "n_full_price": len(full_price)},
         "gap_explanation": ("IMPORTANT CIRCULARITY WARNING: the synthetic sales figures were "
-                             "themselves generated using each SKU's real discount_percent as an "
-                             "input signal (see db/load_synthetic_business_data.py). So finding "
-                             "'discounted SKUs sell more' here is confirming the generator's own "
-                             "assumption, not an independent discovery -- it would be circular "
-                             "to present this as new evidence that discounting works. There is "
-                             "also no separate 'festive campaign' flag distinct from ordinary "
-                             "discount_percent, so festive vs. everyday-discount cannot be told "
-                             "apart at all."),
+                             "themselves generated using each SKU's real discount level as an "
+                             "input signal. So finding 'discounted SKUs sell more' here is "
+                             "confirming the generator's own assumption, not an independent "
+                             "discovery -- it would be circular to present this as new evidence "
+                             "that discounting works. There is also no separate 'festive campaign' "
+                             "flag distinct from an ordinary discount, so festive vs. "
+                             "everyday-discount cannot be told apart at all."),
         "sources": [_src("price_history", "real"), _src("sales_data", "synthetic")],
     }
 
@@ -674,11 +673,10 @@ def q19_social_engagement_what_to_promote(cur):
     return {
         "supported": "partial",
         "data": own,
-        "gap_explanation": ("social_engagement rows are BRAND-level only (brand_id/"
-                             "competitor_brand_id + platform), with no product or theme "
-                             "linkage. This can show which platform gets the most engagement "
-                             "for Nestasia overall, but cannot say which specific PRODUCT to "
-                             "promote next based on social data."),
+        "gap_explanation": ("Social engagement is tracked at the BRAND level only, with no "
+                             "product or theme linkage. This can show which platform gets the "
+                             "most engagement for Nestasia overall, but cannot say which specific "
+                             "PRODUCT to promote next based on social data."),
         "sources": [_src("social_engagement", "synthetic")],
     }
 
@@ -721,10 +719,10 @@ def q21_prioritize_single_product(cur):
         "supported": "partial",
         "data": scored[:5],
         "gap_explanation": ("Score combines sales momentum, margin, stock risk, and a marketing "
-                             "leg from ad_spend_data.attributed_orders -- but that marketing leg "
-                             "rests on a FABRICATED ad-to-SKU link (paid_ad_creative has no sku_id "
-                             "in reality, so ad_spend_data invents which product each ad "
-                             "'targets'). The sales/margin/stock legs are ordinary synthetic "
+                             "leg from the attributed-orders figures -- but that marketing leg "
+                             "rests on a FABRICATED ad-to-product link (real ad-library data has "
+                             "no per-product link at all, so this demo invents which product each "
+                             "ad 'targets'). The sales/margin/stock legs are ordinary synthetic "
                              "data; the marketing leg specifically is demo scaffolding, not a "
                              "recovered fact, which is why this stays Partial rather than Full."),
         "sources": [_src("sales_data", "synthetic"), _src("margin_data", "synthetic"),

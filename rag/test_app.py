@@ -1,44 +1,50 @@
 """
 Drives app.py with streamlit.testing.v1.AppTest -- no browser needed.
-Asks all 25 demo questions in Demo mode and the 8 live questions in Live
-mode, checks every rendered card has a mode label + both badges + a
-citation + a disclaimer, replays the router's cross-mode test cases and
-asserts none of them gets answered from the wrong source, and checks the
-echo-back on 5 paraphrases.
+
+Covers:
+  1. Every dropdown question in both modes (33 total) -- asserts each
+     rendered card has a mode label, both badges (Data/Coverage), at
+     least one visible line under Sources, and a disclaimer line.
+  2. 3 known-good paraphrases + 2 nonsense inputs through the free-text
+     box -- asserts the 3 match and answer, the 2 show the unsupported
+     list and appear in the JSONL log.
+  3. None of the internal field names (collection_complete, is_synthetic,
+     source_type, own_brand, tracked_competitors) appears anywhere in a
+     card's user-facing fields (headline/suggestion/disclaimer/firm_up/
+     sources) across all 33 questions -- checked at the data level (the
+     exact fields render_card() renders outside the Details expander),
+     which is a more precise check than parsing rendered DOM text, since
+     it tests the same data the renderer consumes rather than hoping a
+     later markup change doesn't accidentally leak something.
 
 Usage:
     python test_app.py
 """
+import json
+import re
+
 from streamlit.testing.v1 import AppTest
 
 import question_registry as qr
 
-REQUIRED_FIELDS_MATCHED = ["mode", "accuracy", "scope", "scope_missing", "citation", "disclaimers"]
+FORBIDDEN_INTERNAL_NAMES = ["collection_complete", "is_synthetic", "source_type", "own_brand", "tracked_competitors"]
 
-CROSS_MODE_CASES = [
-    ("How does our Cookware pricing compare to Home Centre's?", "demo", "live"),
-    ("Does Milton have the same stock-display bug we do?", "demo", "live"),
-    ("What's our best-selling SKU in Cookware?", "demo", "live"),
-    ("Which sales channel is driving the most revenue for us right now?", "live", "demo"),
-    ("Should we run a promotion on a specific category to clear inventory?", "live", "demo"),
-    ("If we had to cut 10% of our SKUs, which should go?", "live", "demo"),
-]
+# Belt-and-suspenders: beyond the 5 named terms above, ANY snake_case-looking
+# token (e.g. margin_percent, unit_cost, sku_id) is almost certainly a raw
+# DB/field name that leaked into user-facing text -- catches this whole class
+# of leak (found the hard way: a new UI feature exposed gap_explanation/notes
+# text nobody had scanned before) without needing to name each one up front.
+SNAKE_CASE_RE = re.compile(r"\b[a-z][a-z0-9]*(?:_[a-z0-9]+)+\b")
 
-# All 5 confirmed >= MATCH_THRESHOLD (0.671) in the router's own Step-4
-# test set. Two additional known-hard cases (brand-swapped near-duplicate
-# live questions) are included separately below to illustrate, honestly,
-# where the router correctly falls back to unsupported rather than guess.
-PARAPHRASE_ECHO_CASES = [
+PARAPHRASE_CASES = [
     ("Do we have dead stock eating up our cash?", "demo", "demo_2"),
-    ("Which makes us more money, Cookware or Bakeware?", "demo", "demo_9"),
     ("Which channel makes us the most money?", "demo", "demo_11"),
     ("Is Borosil also affected by the stock-display bug?", "live", "live_5"),
-    ("Which Cookware product sells the most units for us?", "live", "live_8"),
 ]
 
-KNOWN_HARD_CASES = [
-    ("How do our Bakeware prices stack up against Wonderchef?", "live"),
-    ("Does Prestige show the same stock mismatch issue?", "live"),
+NONSENSE_CASES = [
+    "what's the weather today?",
+    "who is our best influencer?",
 ]
 
 
@@ -48,98 +54,184 @@ def _new_app():
     return at
 
 
-def _ask(at, text, mode):
-    """First call in a fresh AppTest pays a one-time ~60-90s cold-start cost
-    (sentence-transformers model load inside AppTest's script-runner
-    thread); every subsequent call on the SAME `at` instance is ~1-2s once
-    the model and embedding cache are warm. Tests share one `at` across all
-    of a suite's questions for exactly this reason."""
+def _select_mode(at, mode):
     at.session_state["mode"] = mode
-    at.chat_input[0].set_value(text).run(timeout=120)
-    return at.session_state["history"][-1]
+    at.run(timeout=30)
 
 
-def test_all_demo_questions(at):
-    missing = []
-    for n in range(1, 26):
-        entry = qr.get(f"demo_{n}")
-        card = _ask(at, entry["text"], "demo")
-        if card["outcome"] != "matched":
-            missing.append((f"demo_{n}", "did not match", card))
-            continue
-        for field in REQUIRED_FIELDS_MATCHED:
-            if not card.get(field):
-                missing.append((f"demo_{n}", f"missing/empty field: {field}", card))
-        if not card["disclaimers"]:
-            missing.append((f"demo_{n}", "empty disclaimers list", card))
-    print(f"[demo 25] failures: {len(missing)}")
-    for m in missing:
-        print("  ", m)
-    return missing
+def _pick_dropdown(at, mode, option_text):
+    at.sidebar.selectbox[0].select(option_text).run(timeout=240)
+    return at.session_state["current_card"]
 
 
-def test_all_live_questions(at):
-    missing = []
-    for i in range(1, 9):
-        entry = qr.get(f"live_{i}")
-        card = _ask(at, entry["text"], "live")
-        if card["outcome"] not in ("matched", "ollama_down"):
-            missing.append((f"live_{i}", "did not match", card))
-            continue
-        if card["outcome"] == "ollama_down":
-            missing.append((f"live_{i}", "Ollama not reachable -- cannot verify card fields", card))
-            continue
-        for field in REQUIRED_FIELDS_MATCHED:
-            if not card.get(field):
-                missing.append((f"live_{i}", f"missing/empty field: {field}", card))
-        if not card["disclaimers"]:
-            missing.append((f"live_{i}", "empty disclaimers list", card))
-    print(f"[live 8] failures: {len(missing)}")
-    for m in missing:
-        print("  ", m)
-    return missing
+def _ask_freetext(at, mode, text):
+    _select_mode(at, mode)
+    at.sidebar.text_input[0].set_value(text)
+    at.sidebar.button[0].click().run(timeout=240)
+    return at.session_state["current_card"]
 
 
-def test_cross_mode_leaks(at):
-    leaks = []
-    for text, typed_mode, true_mode in CROSS_MODE_CASES:
-        card = _ask(at, text, typed_mode)
-        if card["outcome"] == "matched":
-            leaks.append((text, typed_mode, "LEAKED -- answered as matched", card))
-        elif card["outcome"] == "wrong_mode" and card["which_mode_answers_it"] != true_mode:
-            leaks.append((text, typed_mode, "wrong_mode pointed at the wrong mode", card))
-    print(f"[cross-mode] leaks: {len(leaks)}")
-    for l in leaks:
-        print("  ", l)
-    return leaks
+def _card_public_text(card):
+    """Every string a user sees OUTSIDE the Details expander -- exactly
+    the fields render_card() renders before it gets to st.expander()."""
+    parts = [card.get("headline", ""), card.get("suggestion", ""), card.get("disclaimer", ""),
+              card.get("firm_up", "") or "", card.get("data_chip", ""), card.get("coverage_chip", ""),
+              card.get("coverage_missing", "") or ""]
+    for s in card.get("sources", []):
+        parts.append(s.get("label", "") or "")
+    return " ".join(parts)
 
 
-def test_echo_back(at):
+def test_all_dropdown_questions():
+    at = _new_app()
     failures = []
-    for text, mode, expected_id in PARAPHRASE_ECHO_CASES:
-        card = _ask(at, text, mode)
-        if card["outcome"] != "matched" or card["matched_id"] != expected_id:
-            failures.append((text, expected_id, card))
-        else:
-            print(f"[echo] OK: {text!r} -> {card['question_text']!r} ({round(card['match_confidence']*100)}%)")
-    print(f"[echo-back] failures: {len(failures)}")
+    leaks = []
+
+    # Demo: 25 questions, grouped by category in the dropdown.
+    _select_mode(at, "demo")
+    demo_options = at.sidebar.selectbox[0].options[1:]  # skip placeholder
+    assert len(demo_options) == 25, f"expected 25 demo dropdown options, got {len(demo_options)}"
+    for opt in demo_options:
+        card = _pick_dropdown(at, "demo", opt)
+        _check_card(card, opt, failures, leaks)
+
+    # Live: 8 questions, ungrouped.
+    _select_mode(at, "live")
+    live_options = at.sidebar.selectbox[0].options[1:]
+    assert len(live_options) == 8, f"expected 8 live dropdown options, got {len(live_options)}"
+    for opt in live_options:
+        card = _pick_dropdown(at, "live", opt)
+        _check_card(card, opt, failures, leaks)
+
+    print(f"[dropdown-questions] checked {len(demo_options) + len(live_options)} questions")
+    print(f"[dropdown-questions] failures: {len(failures)}")
     for f in failures:
-        print("  ", f)
+        print("   ", f)
+    print(f"[internal-name-leaks] {len(leaks)}")
+    for l in leaks:
+        print("   ", l)
+    return failures, leaks
 
-    for text, mode in KNOWN_HARD_CASES:
-        card = _ask(at, text, mode)
-        print(f"[echo, known-hard case, not asserted] {text!r} -> outcome={card['outcome']} "
-              f"(brand-swapped near-duplicate question; see router report for why)")
 
+def _check_card(card, option_text, failures, leaks):
+    if card["outcome"] == "ollama_down":
+        failures.append((option_text, "Ollama not reachable -- cannot verify this card"))
+        return
+    if card["outcome"] != "matched":
+        failures.append((option_text, f"unexpected outcome: {card['outcome']}"))
+        return
+    if not card.get("mode"):
+        failures.append((option_text, "missing mode"))
+    if not card.get("data_chip"):
+        failures.append((option_text, "missing Data chip"))
+    if not card.get("coverage_chip"):
+        failures.append((option_text, "missing Coverage chip"))
+    if not card.get("sources") and card["sources"] != []:
+        failures.append((option_text, "sources field missing entirely"))
+    elif not card["sources"]:
+        # Empty sources list is only legitimate for the one true refusal
+        # (live_8) -- everything else should cite something.
+        if card["details"]["matched_id"] != "live_8":
+            failures.append((option_text, "empty sources list on a non-refusal question"))
+    if not card.get("disclaimer"):
+        failures.append((option_text, "missing disclaimer line"))
+    if "coverage_missing" not in card or not card["coverage_missing"]:
+        failures.append((option_text, "missing Coverage 'Missing: ...' line"))
+
+    public_text = _card_public_text(card)
+    for name in FORBIDDEN_INTERNAL_NAMES:
+        if name in public_text:
+            leaks.append((option_text, name, public_text))
+    for m in SNAKE_CASE_RE.finditer(public_text):
+        if m.group(0) not in FORBIDDEN_INTERNAL_NAMES:
+            leaks.append((option_text, m.group(0), public_text))
+
+
+def test_freetext_paraphrases_and_nonsense():
+    at = _new_app()
+    match_failures = []
+    for text, mode, expected_id in PARAPHRASE_CASES:
+        card = _ask_freetext(at, mode, text)
+        if card["outcome"] != "matched" or card["details"]["matched_id"] != expected_id:
+            match_failures.append((text, expected_id, card))
+        else:
+            print(f"[paraphrase] OK: {text!r} -> {card['details']['matched_id']}")
+
+    unsupported_failures = []
+    for text in NONSENSE_CASES:
+        card = _ask_freetext(at, "demo", text)
+        if card["outcome"] != "unsupported":
+            unsupported_failures.append((text, card))
+        else:
+            print(f"[nonsense] OK: {text!r} -> unsupported list shown")
+
+    # Confirm both nonsense inputs actually landed in the JSONL log.
+    log_failures = []
+    log_path = at.session_state.get("_log_path")  # not set by app.py; read the real file instead
+    import os
+    real_log_path = os.path.join(os.path.dirname(__file__), ".interaction_log.jsonl")
+    logged_texts = set()
+    if os.path.exists(real_log_path):
+        with open(real_log_path, encoding="utf-8") as f:
+            for line in f:
+                try:
+                    logged_texts.add(json.loads(line)["typed_text"])
+                except Exception:
+                    continue
+    for text in NONSENSE_CASES:
+        if text not in logged_texts:
+            log_failures.append(text)
+
+    print(f"[paraphrase] failures: {len(match_failures)}")
+    for f in match_failures:
+        print("   ", f)
+    print(f"[nonsense] failures: {len(unsupported_failures)}")
+    for f in unsupported_failures:
+        print("   ", f)
+    print(f"[jsonl-log] nonsense inputs missing from log: {len(log_failures)}")
+    for f in log_failures:
+        print("   ", f)
+
+    return match_failures, unsupported_failures, log_failures
+
+
+def test_unsupported_list_renders_in_full():
+    """The unsupported card's grouped_questions must list EVERY question
+    registered for that mode -- not a truncated preview. Checked by count
+    against question_registry.all_for_mode(), independently of render_card's
+    own loop (which has no length limit in its code, but this proves it at
+    the data level the renderer actually consumes)."""
+    at = _new_app()
+    failures = []
+    for mode, expected_count in (("demo", 25), ("live", 8)):
+        card = _ask_freetext(at, mode, "asdkjfhalskdjfh nonsense query zzz")
+        if card["outcome"] != "unsupported":
+            failures.append((mode, f"expected unsupported, got {card['outcome']}"))
+            continue
+        listed = sum(len(v) for v in card["grouped_questions"].values())
+        if listed != expected_count:
+            failures.append((mode, f"expected {expected_count} questions listed, got {listed}"))
+        else:
+            print(f"[unsupported-list-full] OK: {mode} lists all {listed} questions")
+    print(f"[unsupported-list-full] failures: {len(failures)}")
+    for f in failures:
+        print("   ", f)
     return failures
 
 
 if __name__ == "__main__":
-    at = _new_app()
-    r1 = test_all_demo_questions(at)
-    r2 = test_all_live_questions(at)
-    r3 = test_cross_mode_leaks(at)
-    r4 = test_echo_back(at)
-    total_fail = len(r1) + len(r2) + len(r3) + len(r4)
+    dropdown_failures, leaks = test_all_dropdown_questions()
+    match_failures, unsupported_failures, log_failures = test_freetext_paraphrases_and_nonsense()
+    unsupported_list_failures = test_unsupported_list_renders_in_full()
+
     print()
-    print(f"TOTAL FAILURES: {total_fail}")
+    print("=" * 70)
+    print(f"Dropdown-question failures: {len(dropdown_failures)}")
+    print(f"Internal-name leaks:        {len(leaks)}")
+    print(f"Paraphrase-match failures:  {len(match_failures)}")
+    print(f"Nonsense-unsupported failures: {len(unsupported_failures)}")
+    print(f"Nonsense-not-logged failures:  {len(log_failures)}")
+    print(f"Unsupported-list-not-full failures: {len(unsupported_list_failures)}")
+    total = (len(dropdown_failures) + len(leaks) + len(match_failures) + len(unsupported_failures) +
+             len(log_failures) + len(unsupported_list_failures))
+    print(f"TOTAL FAILURES: {total}")

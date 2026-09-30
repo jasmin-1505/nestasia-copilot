@@ -94,14 +94,14 @@ _DEMO_TEXT = {
 }
 
 _DEMO_NOTES = {
-    6: "Competitor margin_percent is a synthetic placeholder, never a real fact -- see the handler's special_note.",
-    10: "Downgraded to Partial: conversion ratio is confounded with the generator's own price/discount->volume rule (circularity).",
-    16: "Ad-to-SKU attribution (ad_spend_data.sku_id) is fabricated by construction, not recovered.",
+    6: "Competitor margin is a synthetic placeholder, never a real fact -- see the handler's caveat.",
+    10: "Downgraded to Partial: the conversion ratio is confounded with the generator's own price/discount-to-volume rule (circularity).",
+    16: "The ad-to-product attribution is fabricated by construction, not recovered.",
     17: "Same fabricated-attribution gap as Q16; decision-framed, not a directive.",
-    18: "Circular by construction: synthetic sales were generated FROM discount_percent.",
-    19: "social_engagement is brand-level only, no product/theme link.",
+    18: "Circular by construction: synthetic sales were generated from each SKU's discount level.",
+    19: "Social engagement is brand-level only, with no product/theme link.",
     20: "Reports ad activity (real, Verified), not effectiveness -- Scope stays Partial even though Accuracy is Verified.",
-    21: "Marketing leg rests on the same fabricated ad-to-SKU attribution as Q16/Q17.",
+    21: "The marketing leg rests on the same fabricated ad-to-product attribution as Q16/Q17.",
 }
 
 
@@ -125,24 +125,23 @@ def _demo_entry(n):
 # paraphrase naming a different brand still resolves correctly.
 _LIVE_QUESTIONS = [
     ("How does our Cookware pricing compare to Home Centre's?", "Partial",
-     "intent=price_comparison; brand/category parsed from the literal question text. "
-     "Downgraded from Full: Nestasia's Cookware collection is confirmed under-collected "
-     "(site counter reads 88 products, only 12 are on file) and collection_complete=False "
-     "as of 2026-09-27 -- the 12 SKUs priced here are real but not the whole category."),
+     "Brand and category are parsed from the question text. Downgraded from Full: Nestasia's "
+     "Cookware collection is confirmed under-collected (the site lists 88 products, only 12 are "
+     "on file) as of 2026-09-27 -- the 12 SKUs priced here are real but not the whole category."),
     ("Which of our products show a stock-display inconsistency?", "Partial",
-     "intent=stock_mismatch_lookup(Nestasia); some categories (Container, Lunch Boxes+Bags) are still incomplete."),
+     "Looks at Nestasia's own listings; some categories (Container, Lunch Boxes+Bags) are still incomplete."),
     ("Does Milton have the same stock-display bug we do?", "Full",
-     "intent=stock_mismatch_lookup(Milton); complete data, confirmed bug."),
+     "Looks at Milton's listings; complete data, confirmed bug."),
     ("Does Home Centre have the stock-display bug?", "Not supported",
-     "intent=stock_mismatch_lookup(Home Centre); testable=false -- Home Centre's site architecture gives no on-page signal to check at all."),
+     "Cannot be tested -- Home Centre's site architecture gives no on-page signal to check at all."),
     ("Does Borosil have this bug too?", "Full",
-     "intent=stock_mismatch_lookup(Borosil); complete data, confirmed bug."),
+     "Looks at Borosil's listings; complete data, confirmed bug."),
     ("How many of our tracked competitors have this stock-display bug?", "Partial",
-     "intent=stock_mismatch_aggregate; Home Centre is untestable and must be reported separately, not folded into either count."),
+     "Tallies all tracked competitors; Home Centre is untestable and must be reported separately, not folded into either count."),
     ("Which Container collections have incomplete data right now?", "Partial",
-     "intent=completeness_check; the answer itself IS that the data is incomplete."),
+     "Checks collection completeness by category; the answer itself IS that the data is incomplete."),
     ("What's our best-selling SKU in Cookware?", "Not supported",
-     "intent=unsupported_internal_data; no sales table exists in the live/production schema at all."),
+     "No sales table exists in the live/production schema at all."),
 ]
 
 

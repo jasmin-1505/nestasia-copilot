@@ -96,8 +96,29 @@ def format_pct(value):
 # ---------------------------------------------------------------------------
 # Shared source-list builders
 # ---------------------------------------------------------------------------
+TABLE_LABELS = {
+    "sales_data": "Sales records",
+    "inventory_data": "Inventory records",
+    "margin_data": "Margin data",
+    "sku_launch_data": "Product launch records",
+    "traffic_data": "Traffic data",
+    "channel_performance": "Channel performance",
+    "channel_inventory": "Channel inventory",
+    "complaint_data": "Customer complaints",
+    "ad_spend_data": "Ad spend records",
+    "social_engagement": "Social engagement",
+    "price_history": "Competitor pricing",
+    "paid_ad_creative": "Ad library",
+    "sku": "Product catalogue",
+}
+
+
+def _table_label(t):
+    return TABLE_LABELS.get(t, t.replace("_", " ").capitalize())
+
+
 def _demo_sources(tables):
-    return [{"label": f"{t} (fixture)", "url": None, "as_of": None, "kind": "demo"} for t in tables]
+    return [{"label": f"{_table_label(t)} (fixture)", "url": None, "as_of": None, "kind": "demo"} for t in tables]
 
 
 def _real_sources_from_rows(rows, url_field="product_url", label_field="product_name"):
@@ -175,12 +196,19 @@ def _combine_caveats(*parts):
 
 
 def _no_data_bundle(raw, reason):
+    # Even with zero rows, the tables the handler QUERIED are still known
+    # (raw["sources"], from fixture_business_queries.py's _src() dicts) --
+    # "no candidates found" is itself a finding from those tables, not a
+    # sourceless one.
+    table_names = [s["table"] for s in raw.get("sources", []) if s.get("source_type") == "synthetic"]
+    real_tables = [s["table"] for s in raw.get("sources", []) if s.get("source_type") == "real"]
+    sources = _demo_sources(table_names) + [{"label": f"{_table_label(t)} (real)", "url": None, "as_of": None, "kind": "real"} for t in real_tables]
     return {
         "headline": f"No candidates found ({reason}).",
         "visual": None,
         "suggestion": "Nothing to rank here right now.",
         "firm_up": raw.get("gap_explanation") or "N/A",
-        "sources": [],
+        "sources": sources,
         "caveat": _completeness_caveat(raw),
     }
 
@@ -197,7 +225,7 @@ def present_demo_1(raw):
         "headline": headline,
         "visual": visual,
         "suggestion": "Candidates, ranked by units sold. Which to actually promote is a decision for your team.",
-        "firm_up": "Confirm against real sales_data once your POS/e-commerce sales feed is connected -- these units_sold figures are synthetic placeholders.",
+        "firm_up": "Confirm against your real sales feed once it is connected -- these unit-sold figures are synthetic placeholders.",
         "sources": _demo_sources(["sales_data", "inventory_data"]),
         "caveat": _completeness_caveat(raw),
     }
@@ -216,7 +244,7 @@ def present_demo_2(raw):
         "headline": headline,
         "visual": visual,
         "suggestion": "Candidates, ranked by current stock. Whether to discount or hold is a decision for your team.",
-        "firm_up": "Confirm current_stock and units_sold against real inventory/sales systems.",
+        "firm_up": "Confirm current stock and units sold against real inventory/sales systems.",
         "sources": _demo_sources(["sales_data", "inventory_data"]),
         "caveat": _completeness_caveat(raw),
     }
@@ -247,7 +275,7 @@ def present_demo_3(raw):
         "headline": headline,
         "visual": visual,
         "suggestion": "A revenue comparison by category, not a resourcing recommendation.",
-        "firm_up": "Confirm against real sales_data across all tracked brands once connected.",
+        "firm_up": "Confirm against real sales data across all tracked brands once connected.",
         "sources": _demo_sources(["sales_data"]),
         "caveat": _completeness_caveat(raw),
     }
@@ -266,7 +294,7 @@ def present_demo_4(raw):
         "headline": headline,
         "visual": visual,
         "suggestion": "Candidates, ranked by units sold among low-stock SKUs. Reorder timing is a decision for your team.",
-        "firm_up": "Confirm current_stock and reorder lead times against your real inventory system before acting.",
+        "firm_up": "Confirm current stock and reorder lead times against your real inventory system before acting.",
         "sources": _demo_sources(["sales_data", "inventory_data"]),
         "caveat": _completeness_caveat(raw),
     }
@@ -308,8 +336,8 @@ def present_demo_6(raw):
         "headline": headline,
         "visual": visual,
         "suggestion": "Our own margin by SKU, shown next to real competitor pricing -- not a pricing recommendation.",
-        "firm_up": "Confirm unit_cost against real supplier/COGS records -- margin_percent here is a synthetic estimate.",
-        "sources": _demo_sources(["margin_data"]) + [{"label": "price_history (real)", "url": None, "as_of": None, "kind": "real"}],
+        "firm_up": "Confirm per-unit cost against real supplier/COGS records -- this margin figure is a synthetic estimate.",
+        "sources": _demo_sources(["margin_data"]) + [{"label": "Competitor pricing (real)", "url": None, "as_of": None, "kind": "real"}],
         "caveat": _combine_caveats(
             "A competitor's true costs and margins are never public -- treat any competitor margin figure here as a demo placeholder, not a real finding.",
             _completeness_caveat(raw)),
@@ -329,7 +357,7 @@ def present_demo_7(raw):
         "headline": headline,
         "visual": visual,
         "suggestion": "Candidates, ranked by a margin x volume score. Which to prioritize is a decision for your team.",
-        "firm_up": "Confirm unit_cost against real supplier/COGS records -- margin_percent here is a synthetic estimate.",
+        "firm_up": "Confirm per-unit cost against real supplier/COGS records -- this margin figure is a synthetic estimate.",
         "sources": _demo_sources(["margin_data", "sales_data"]),
         "caveat": _completeness_caveat(raw),
     }
@@ -350,7 +378,7 @@ def present_demo_8(raw):
         "headline": headline,
         "visual": visual,
         "suggestion": "Candidates, ranked by stock-to-sales ratio. Whether to run a promotion is a decision for your team.",
-        "firm_up": "Confirm current_stock and units_sold against real inventory/sales systems before promoting.",
+        "firm_up": "Confirm current stock and units sold against real inventory/sales systems before promoting.",
         "sources": _demo_sources(["inventory_data", "sales_data"]),
         "caveat": _completeness_caveat(raw),
     }
@@ -374,7 +402,7 @@ def present_demo_9(raw):
         "headline": headline,
         "visual": visual,
         "suggestion": "A margin comparison between two categories, not a resourcing recommendation.",
-        "firm_up": "Confirm unit_cost against real supplier/COGS records -- margin_percent here is a synthetic estimate.",
+        "firm_up": "Confirm per-unit cost against real supplier/COGS records -- this margin figure is a synthetic estimate.",
         "sources": _demo_sources(["margin_data"]),
         "caveat": _pairwise_completeness_caveat(raw, "Cookware", "Bakeware"),
     }
@@ -396,7 +424,7 @@ def present_demo_10(raw):
         "visual": visual,
         "suggestion": "Candidates, ranked by conversion rate. Whether pricing is the cause is a decision for your team to investigate.",
         "firm_up": "Confirm with real, independently-collected session/traffic data before concluding price is the cause.",
-        "sources": _demo_sources(["traffic_data", "channel_performance"]) + [{"label": "price_history (real)", "url": None, "as_of": None, "kind": "real"}],
+        "sources": _demo_sources(["traffic_data", "channel_performance"]) + [{"label": "Competitor pricing (real)", "url": None, "as_of": None, "kind": "real"}],
         "caveat": _combine_caveats(
             "This conversion figure is entangled with how the demo generated sales from price/discount, so it may just be echoing that generator rule rather than a real pricing problem.",
             _completeness_caveat(raw)),
@@ -497,7 +525,7 @@ def present_demo_15(raw):
         "visual": visual,
         "suggestion": "A real availability comparison across brands, not an assortment recommendation.",
         "firm_up": "This is already real, live-collected stock-status data -- no further confirmation needed beyond re-collecting if it's since changed.",
-        "sources": [{"label": "sku (real)", "url": None, "as_of": None, "kind": "real"}],
+        "sources": [{"label": "Product catalogue (real)", "url": None, "as_of": None, "kind": "real"}],
         "caveat": None,
     }
 
@@ -517,7 +545,7 @@ def present_demo_16(raw):
         "visual": visual,
         "suggestion": "Ads, ranked by attributed orders -- not a claim about which campaign truly drove sales.",
         "firm_up": "Confirm with real per-SKU ad attribution -- this ad-to-product link is fabricated for the demo.",
-        "sources": [{"label": "paid_ad_creative (real)", "url": None, "as_of": None, "kind": "real"}] + _demo_sources(["ad_spend_data"]),
+        "sources": [{"label": "Ad library (real)", "url": None, "as_of": None, "kind": "real"}] + _demo_sources(["ad_spend_data"]),
         "caveat": _combine_caveats(
             "Which product each ad actually targets is invented for this demo -- real ad data has no such link at all.",
             _completeness_caveat(raw)),
@@ -563,7 +591,7 @@ def present_demo_18(raw):
         "visual": visual,
         "suggestion": "A discount-vs-full-price comparison, not proof that discounting works.",
         "firm_up": "This comparison is circular by construction -- confirm with a real campaign period and real sales data instead.",
-        "sources": [{"label": "price_history (real)", "url": None, "as_of": None, "kind": "real"}] + _demo_sources(["sales_data"]),
+        "sources": [{"label": "Competitor pricing (real)", "url": None, "as_of": None, "kind": "real"}] + _demo_sources(["sales_data"]),
         "caveat": _combine_caveats(
             "This demo's sales figures were generated FROM each SKU's discount level, so finding discounted items sell more just confirms that generator rule -- it isn't independent evidence discounting works.",
             _completeness_caveat(raw)),
@@ -593,7 +621,8 @@ def present_demo_20(raw):
     if not rows:
         return _no_data_bundle(raw, "no competitor ad data found")
     top = rows[0]
-    headline = f"{top['brand_name']} is the most active competitor advertiser with {top['n_ads']} ad(s) on the theme '{top['theme']}'."
+    theme_label = top["theme"] if top["theme"] else "no stated theme"
+    headline = f"{top['brand_name']} is the most active competitor advertiser with {top['n_ads']} ad(s) ({theme_label})."
     visual = _table(["Brand", "Theme", "Ads", "Avg days running"],
                      [[r["brand_name"], r["theme"], r["n_ads"], r["avg_days_running"]] for r in rows],
                      kind="real")
@@ -602,7 +631,7 @@ def present_demo_20(raw):
         "visual": visual,
         "suggestion": "An activity ranking, not an effectiveness ranking -- there is no sales attribution behind it.",
         "firm_up": "This is already real ad-library data -- effectiveness would need real per-ad sales attribution, which doesn't exist for anyone here.",
-        "sources": [{"label": "paid_ad_creative (real)", "url": None, "as_of": None, "kind": "real"}],
+        "sources": [{"label": "Ad library (real)", "url": None, "as_of": None, "kind": "real"}],
         "caveat": "Most ads here, not most effective ads -- there's no way to measure which ad actually drove a sale, for us or for competitors.",
     }
 
@@ -681,7 +710,7 @@ def present_demo_24(raw):
         "headline": headline,
         "visual": visual,
         "suggestion": "Categories, ranked by the revenue gap. Where to respond is a decision for your team.",
-        "firm_up": "Confirm against real sales_data across all tracked brands once connected.",
+        "firm_up": "Confirm against real sales data across all tracked brands once connected.",
         "sources": _demo_sources(["sales_data"]),
         "caveat": _completeness_caveat(raw),
     }
@@ -699,7 +728,7 @@ def present_demo_25(raw):
         "headline": headline,
         "visual": visual,
         "suggestion": "Candidates, ranked by a low units-sold x margin score. Which SKUs to actually cut is a decision for your team.",
-        "firm_up": "Confirm against real sales_data and margin_data before cutting anything -- these figures are synthetic placeholders.",
+        "firm_up": "Confirm against real sales and margin data before cutting anything -- these figures are synthetic placeholders.",
         "sources": _demo_sources(["sales_data", "margin_data"]),
         "caveat": _completeness_caveat(raw),
     }
