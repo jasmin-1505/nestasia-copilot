@@ -142,14 +142,36 @@ _LIVE_QUESTIONS = [
      "Checks collection completeness by category; the answer itself IS that the data is incomplete."),
     ("What's our best-selling SKU in Cookware?", "Not supported",
      "No sales table exists in the live/production schema at all."),
+    ("Which of our tracked search terms show rising or falling interest right now?", "Full",
+     "Reports on all 12 tracked search terms (6 brand, 6 category) from one search-signal collection "
+     "run; direction is a first-half-vs-second-half average comparison over that one run's ~93-day "
+     "Google Trends window, not a multi-run trend confirmed over time."),
 ]
+
+
+
+# All 8 original live questions use "Real-data" as their category -- this
+# has never been a business-function label the way the demo questions'
+# Product/Price/Place/Promotion/Cross-cutting categories are; live's
+# dropdown is ungrouped (see app.py), so "category" here has only ever
+# meant "this is a live/production-schema question," not "this belongs to
+# marketing/pricing/etc." live_9 is the one deliberate exception: it's
+# given the real business-function category "Promotion" rather than
+# "Real-data", because search-demand interest genuinely IS a marketing/
+# promotion signal (what people are searching for informs ad targeting and
+# promotional focus) -- unlike "Cross-cutting" in this schema, which is
+# reserved for questions that combine sales + margin + stock + marketing
+# signals at once (see demo_21/22/24/25); this question touches only one
+# signal (search interest), just across many terms, so "Promotion" fits
+# its content better than the more sweeping "Cross-cutting" label would.
+_LIVE_CATEGORY_OVERRIDES = {9: "Promotion"}
 
 
 def _live_entry(i, text, scope, notes):
     return {
         "id": f"live_{i}",
         "text": text,
-        "category": "Real-data",
+        "category": _LIVE_CATEGORY_OVERRIDES.get(i, "Real-data"),
         "mode": "live",
         "handler": generate,
         "arg_style": "typed_text",

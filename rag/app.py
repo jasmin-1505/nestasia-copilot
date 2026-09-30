@@ -2,7 +2,7 @@
 Streamlit UI for the Nestasia competitive-intelligence system.
 
 Primary way to ask a question is a DROPDOWN (not free text) -- the 25 demo
-questions grouped by category, or the 8 live questions ungrouped. A plain
+questions grouped by category, or the 9 live questions ungrouped. A plain
 text box below it is a secondary, explicitly "(experimental)" path that
 routes through router.py; it only ever answers one of the same fixed
 questions (or says it can't), never free-generates a new answer.
@@ -33,7 +33,7 @@ PLACEHOLDER = "-- Select a question --"
 # entirely by retrieve.py -- also no LLM call needed for it, even though
 # generate()'s current dispatch would otherwise route it through Ollama;
 # we bypass generate() for both and build Details straight from retrieve().
-NO_LLM_LIVE_IDS = {"live_6", "live_8"}
+NO_LLM_LIVE_IDS = {"live_6", "live_8", "live_9"}
 
 _FULLY_VERIFIED_FALLBACK = "This answer uses fully verified, complete data."
 _NO_CAVEAT_FALLBACK = "No further caveat applies."

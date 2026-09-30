@@ -162,7 +162,7 @@ def check_headline(label, headline, underlying_data, extra_counts=(), extra_valu
 
 
 # ---------------------------------------------------------------------------
-# Main check over all 33 presenters (25 demo + 8 live)
+# Main check over all 34 presenters (25 demo + 9 live)
 # ---------------------------------------------------------------------------
 def _demo_extra_counts(qnum, raw):
     """Legitimately DERIVED counts a headline is allowed to quote (e.g.
@@ -219,6 +219,17 @@ def _live_check(entry_id):
         untestable = [c for c in comp_cls.values() if not c["brand_testable_for_mismatch"]]
         with_bug = [c for c in testable if c["brand_has_confirmed_mismatch"]]
         extra_counts.extend([len(with_bug), len(testable), len(untestable)])
+    elif entry_id == "live_9":
+        # search_trend_direction's evidence is NOT run through the own/
+        # competitor split (see retrieve.py) -- it's a flat list of
+        # per-term rows. Independently re-derives the rising/falling/flat/
+        # total counts the headline claims from that same flat list, not
+        # from the presenter's own counting.
+        rows = result["evidence"]
+        n_rising = sum(1 for r in rows if r["direction"] == "rising")
+        n_falling = sum(1 for r in rows if r["direction"] == "falling")
+        n_flat = sum(1 for r in rows if r["direction"] == "flat")
+        extra_counts.extend([len(rows), n_rising, n_falling, n_flat])
 
     ok = check_headline(entry_id, bundle["headline"], result["evidence"], extra_counts=extra_counts, extra_values=extra_values)
     return ok, bundle, result["evidence"], extra_counts, extra_values
@@ -244,7 +255,7 @@ def main():
         print(f"    visual type: {bundle['visual']['type'] if bundle['visual'] else None}")
         print()
 
-    for i in range(1, 9):
+    for i in range(1, 10):
         qid = f"live_{i}"
         ok, bundle, underlying, extra_counts, extra_values = _live_check(qid)
         all_ok = all_ok and ok
@@ -310,7 +321,7 @@ def test_no_directive_language(bundles):
 
 
 # ---------------------------------------------------------------------------
-# Prove the test can actually fail: for EACH of the 33 presenters, mutate
+# Prove the test can actually fail: for EACH of the 34 presenters, mutate
 # one number in its headline and confirm check_headline() catches it.
 #
 # The mutation target must be a genuine CLAIMED number (something
@@ -488,9 +499,9 @@ def check_all_rankings(all_data):
 def print_all_headlines(all_data):
     print()
     print("=" * 70)
-    print("All 33 headlines")
+    print("All 34 headlines")
     print("=" * 70)
-    for qid in [f"demo_{n}" for n in range(1, 26)] + [f"live_{n}" for n in range(1, 9)]:
+    for qid in [f"demo_{n}" for n in range(1, 26)] + [f"live_{n}" for n in range(1, 10)]:
         print(f"[{qid}] {all_data[qid]['bundle']['headline']}")
 
 
@@ -542,9 +553,37 @@ def _live1_direction_spec(underlying):
             "name_b": f"{comp[0]['brand_name']} avg price", "val_b": float(comp[0]["avg_price"]), "op": ">"}
 
 
+def _live9_direction_spec(underlying):
+    """live_9's headline claims COUNTS of rising/falling/flat terms, not a
+    single named quantity vs. another -- unlike every other spec here.
+    Rather than verify just the counts sum correctly (which would pass even
+    if a term were misclassified as long as the totals matched), this
+    independently re-checks EVERY row's own direction label against its own
+    two numbers: a term marked 'rising' must have second_half_avg >
+    first_half_avg, a term marked 'falling' must have second_half_avg <
+    first_half_avg. Returns the 'multi' shape (a list of (name, val_a, op,
+    val_b) checks) rather than the single-pair shape other specs use, since
+    this headline asserts something about every tracked term at once --
+    check_all_directions() below accepts either shape. 'flat' and
+    'insufficient_data' rows assert no directional inequality, so they're
+    not included as checks (there's nothing directional to verify)."""
+    if not underlying:
+        return None
+    checks = []
+    for r in underlying:
+        if r["direction"] == "rising":
+            checks.append((f"{r['term']} rising", r["second_half_avg"], ">", r["first_half_avg"]))
+        elif r["direction"] == "falling":
+            checks.append((f"{r['term']} falling", r["second_half_avg"], "<", r["first_half_avg"]))
+    if not checks:
+        return None
+    return {"multi": checks}
+
+
 DIRECTION_SPECS = {
     "demo_9": _demo9_direction_spec,
     "live_1": _live1_direction_spec,
+    "live_9": _live9_direction_spec,
 }
 
 
@@ -569,6 +608,18 @@ def check_all_directions(all_data):
         if spec is None:
             unverifiable.append((qid, keyword, headline, "underlying data doesn't have both quantities to compare"))
             continue
+
+        if "multi" in spec:
+            # live_9's shape: a claim about every tracked term at once, not
+            # a single named pair -- see _live9_direction_spec's docstring.
+            sub_results = [(name, val_a, op, val_b, _verify_op(val_a, op, val_b))
+                            for name, val_a, op, val_b in spec["multi"]]
+            if all(ok for *_, ok in sub_results):
+                verified.append((qid, keyword, f"{len(sub_results)} per-term direction claim(s)", sub_results))
+            else:
+                failed.append((qid, keyword, headline, sub_results))
+            continue
+
         ok = _verify_op(spec["val_a"], spec["op"], spec["val_b"])
         if ok:
             verified.append((qid, keyword, spec["name_a"], spec["val_a"], spec["name_b"], spec["val_b"]))
@@ -661,8 +712,8 @@ if __name__ == "__main__":
 
     print()
     print("=" * 70)
-    print(f"Headline-number check over all 33 presenters: {'PASSED' if headline_ok else 'FAILED'}")
-    print(f"Mutation-detection proof (all 33):             {'PASSED' if mutation_ok else 'FAILED'} "
+    print(f"Headline-number check over all 34 presenters: {'PASSED' if headline_ok else 'FAILED'}")
+    print(f"Mutation-detection proof (all 34):             {'PASSED' if mutation_ok else 'FAILED'} "
           f"({len(no_claim)} had no claimed number to mutate)")
     print(f"Ranking check:                                  {'PASSED' if ranking_ok else 'FAILED'} "
           f"({len(ranking_unverifiable)} could not be verified automatically)")

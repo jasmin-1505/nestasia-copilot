@@ -2,7 +2,7 @@
 Drives app.py with streamlit.testing.v1.AppTest -- no browser needed.
 
 Covers:
-  1. Every dropdown question in both modes (33 total) -- asserts each
+  1. Every dropdown question in both modes (34 total) -- asserts each
      rendered card has a mode label, both badges (Data/Coverage), at
      least one visible line under Sources, and a disclaimer line.
   2. 3 known-good paraphrases + 2 nonsense inputs through the free-text
@@ -11,7 +11,7 @@ Covers:
   3. None of the internal field names (collection_complete, is_synthetic,
      source_type, own_brand, tracked_competitors) appears anywhere in a
      card's user-facing fields (headline/suggestion/disclaimer/firm_up/
-     sources) across all 33 questions -- checked at the data level (the
+     sources) across all 34 questions -- checked at the data level (the
      exact fields render_card() renders outside the Details expander),
      which is a more precise check than parsing rendered DOM text, since
      it tests the same data the renderer consumes rather than hoping a
@@ -98,7 +98,7 @@ def test_all_dropdown_questions():
     # Live: 8 questions, ungrouped.
     _select_mode(at, "live")
     live_options = at.sidebar.selectbox[0].options[1:]
-    assert len(live_options) == 8, f"expected 8 live dropdown options, got {len(live_options)}"
+    assert len(live_options) == 9, f"expected 9 live dropdown options, got {len(live_options)}"
     for opt in live_options:
         card = _pick_dropdown(at, "live", opt)
         _check_card(card, opt, failures, leaks)
@@ -203,7 +203,7 @@ def test_unsupported_list_renders_in_full():
     the data level the renderer actually consumes)."""
     at = _new_app()
     failures = []
-    for mode, expected_count in (("demo", 25), ("live", 8)):
+    for mode, expected_count in (("demo", 25), ("live", 9)):
         card = _ask_freetext(at, mode, "asdkjfhalskdjfh nonsense query zzz")
         if card["outcome"] != "unsupported":
             failures.append((mode, f"expected unsupported, got {card['outcome']}"))

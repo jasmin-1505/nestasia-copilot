@@ -925,6 +925,78 @@ def present_live_8(typed_text):
     }
 
 
+def present_live_9(typed_text):
+    """Fully templated, no LLM call -- same reasoning as live_6's aggregate
+    template: this question compares direction across all 12 tracked search
+    terms at once, which is exactly the multi-entity-narration shape that
+    caused real hallucination before (see generate.py's
+    _AGGREGATE_TEMPLATED_INTENTS section). retrieve.py's
+    _search_trend_direction() has already computed each term's direction in
+    code; this function only counts and formats it."""
+    result = retrieve(typed_text, db_mode="production")
+    rows = result["evidence"]
+
+    rising = [r for r in rows if r["direction"] == "rising"]
+    falling = [r for r in rows if r["direction"] == "falling"]
+    flat = [r for r in rows if r["direction"] == "flat"]
+    insufficient = [r for r in rows if r["direction"] == "insufficient_data"]
+
+    headline = (f"{len(rising)} of {len(rows)} tracked search term(s) show rising interest, "
+                f"{len(falling)} falling, {len(flat)} flat.")
+
+    visual = _table(
+        ["Term", "Type", "Category", "First-half avg", "Second-half avg", "Direction"],
+        [[r["term"], r["term_type"].capitalize() if r["term_type"] else "-", r["category"] or "-",
+          r["first_half_avg"], r["second_half_avg"], r["direction"].replace("_", " ").capitalize()]
+         for r in rows],
+        kind="real",
+    )
+
+    caveat_parts = [
+        "Google Trends values are a relative index from 0-100 (relative to this term's own peak "
+        "popularity in the window shown) -- NOT an actual search-volume count. A value of 80 means "
+        "'80% of this term's own peak,' not '80 searches.'",
+        "This reflects only ONE search-signal collection run so far -- a short-term rising/falling "
+        "read from a single collection is a weak signal, not an established trend confirmed by "
+        "repeated collection over time.",
+    ]
+    # Recomputed live from the SAME first_half_avg the table shows, every
+    # time this presenter runs -- never a string written once from today's
+    # numbers. "Rising" collapses two genuinely different cases into one
+    # word: a term that grew off an already-nonzero baseline (real,
+    # if modest, established interest) vs. one that went from a flat 0 to
+    # any nonzero value at all (interest appearing from no prior signal,
+    # a weaker read). Surfaced here, in the caveat, rather than by
+    # reweording the headline itself to something like "increased
+    # interest" -- that would abandon the same "Rising"/"Falling"/"Flat"
+    # vocabulary the Direction column uses, and a headline and a caveat
+    # using different words for the same classification would read as two
+    # systems disagreeing, not one system being careful. If a future
+    # collection run shifts which terms are zero-baseline, this sentence
+    # (and whether it appears at all) updates with it automatically.
+    zero_baseline_rising = [r for r in rising if r["first_half_avg"] == 0]
+    nonzero_baseline_rising = [r for r in rising if r["first_half_avg"] != 0]
+    if rising and zero_baseline_rising:
+        caveat_parts.append(
+            f"Of the {len(rising)} 'rising' term(s), {len(zero_baseline_rising)} rose from a zero "
+            f"baseline -- a term appearing from no prior signal at all, a weaker read than genuine "
+            f"growth off an established baseline (only {len(nonzero_baseline_rising)} of the "
+            f"{len(rising)} rose from an already-nonzero starting point)."
+        )
+    if insufficient:
+        caveat_parts.append(f"{len(insufficient)} term(s) had no data to classify at all.")
+
+    return {
+        "headline": headline,
+        "visual": visual,
+        "suggestion": "A factual direction read per term, not a recommendation on where to focus spend.",
+        "firm_up": ("Re-run this search-signal collection over successive weeks and compare across multiple "
+                    "runs before treating any single term's direction here as a confirmed trend."),
+        "sources": [{"label": "Google Trends interest-over-time", "url": None, "as_of": None, "kind": "real"}],
+        "caveat": " ".join(caveat_parts),
+    }
+
+
 PRESENTERS = {
     "demo_1": present_demo_1, "demo_2": present_demo_2, "demo_3": present_demo_3,
     "demo_4": present_demo_4, "demo_5": present_demo_5, "demo_6": present_demo_6,
@@ -937,5 +1009,5 @@ PRESENTERS = {
     "demo_25": present_demo_25,
     "live_1": present_live_price_comparison, "live_2": present_live_2, "live_3": present_live_3,
     "live_4": present_live_4, "live_5": present_live_5, "live_6": present_live_6,
-    "live_7": present_live_7, "live_8": present_live_8,
+    "live_7": present_live_7, "live_8": present_live_8, "live_9": present_live_9,
 }

@@ -155,6 +155,11 @@ def classify_intent(question):
     if any(t in q for t in ("ad ", " ads", "advertisement", "ad library", "ad creative", "ad theme")):
         return {"intent": "ad_theme_lookup", "brands": mentioned_brands, "question": question}
 
+    if any(t in q for t in ("search term", "search interest", "search trend", "search volume",
+                             "rising or falling", "rising interest", "falling interest")) or \
+       ("search" in q and any(t in q for t in ("rising", "falling", "trend", "interest"))):
+        return {"intent": "search_trend_direction", "question": question}
+
     if any(t in q for t in ("price", "pricing", "cost", "cheaper", "expensive")):
         return {
             "intent": "price_comparison",
@@ -376,6 +381,93 @@ def _completeness_check(cur, brands, categories):
     return rows
 
 
+def _search_trend_direction(cur):
+    """Real trend direction per tracked search term, computed here in code --
+    not left for a model to eyeball a multi-term time series and describe.
+    This is exactly the "comparing trends across multiple terms at once"
+    shape that caused real hallucination on the stock-mismatch aggregate
+    question (see generate.py's _AGGREGATE_TEMPLATED_INTENTS section) --
+    same lesson applied here proactively rather than re-risked on new data.
+    No Ollama call is made for this intent at all (app.py routes it via
+    NO_LLM_LIVE_IDS straight to retrieve() + presenters.py, same as
+    stock_mismatch_aggregate and unsupported_internal_data).
+
+    METHOD (stated explicitly since "rising vs falling" is a methodology
+    choice, not a fact lookup): for each term, pull every
+    signal_type='interest_over_time' row ordered by date ascending. Split
+    the ordered series at the midpoint -- first_half = rows[:n // 2],
+    second_half = rows[n // 2:] (the second, possibly-larger half absorbs
+    the extra row on an odd-length series, so the most recent day is always
+    inside the second half, never dropped from either side). direction is
+    'rising' if second_half's average is strictly greater than first_half's
+    average, 'falling' if strictly less, 'flat' if exactly equal. This is a
+    plain average-of-halves comparison -- no linear regression/slope fit,
+    no smoothing, no minimum-difference threshold. The comparison uses the
+    full-precision averages; only the DISPLAYED first_half_avg/
+    second_half_avg values are rounded to 1 decimal place afterward, so a
+    term whose rounded halves print identically can still carry a definite
+    direction from the unrounded arithmetic -- this rounding note is
+    surfaced in the presenter's caveat, not hidden.
+
+    If a term has zero interest_over_time rows at all (shouldn't happen
+    given search_signal_collector.py always pulls the full term list, but
+    checked rather than assumed), its direction is 'insufficient_data'
+    rather than a guessed value.
+    """
+    cur.execute(
+        """
+        SELECT ssd.term, ssd.category, ssd.term_type, ssd.date, ssd.interest_value,
+               sr.source_type::text AS source_type, sr.collected_at
+        FROM search_signal_data ssd
+        JOIN source_record sr ON sr.id = ssd.source_record_id
+        WHERE ssd.signal_type = 'interest_over_time'
+        ORDER BY ssd.term, ssd.date
+        """
+    )
+    rows = [dict(r) for r in cur.fetchall()]
+
+    by_term = defaultdict(list)
+    for r in rows:
+        by_term[r["term"]].append(r)
+
+    results = []
+    for term, term_rows in by_term.items():
+        n = len(term_rows)
+        mid = n // 2
+        first_half = term_rows[:mid]
+        second_half = term_rows[mid:]
+
+        if not first_half or not second_half:
+            direction = "insufficient_data"
+            first_avg = second_avg = None
+        else:
+            first_avg = sum(r["interest_value"] for r in first_half) / len(first_half)
+            second_avg = sum(r["interest_value"] for r in second_half) / len(second_half)
+            if second_avg > first_avg:
+                direction = "rising"
+            elif second_avg < first_avg:
+                direction = "falling"
+            else:
+                direction = "flat"
+
+        results.append({
+            "term": term,
+            "category": term_rows[0]["category"],
+            "term_type": term_rows[0]["term_type"],
+            "num_days": n,
+            "first_half_avg": round(first_avg, 1) if first_avg is not None else None,
+            "second_half_avg": round(second_avg, 1) if second_avg is not None else None,
+            "direction": direction,
+            "source_type": term_rows[0]["source_type"],
+            "collected_at": term_rows[-1]["collected_at"],
+        })
+
+    # Brands first, then generic terms, alphabetical within each group --
+    # a stable, deterministic order for the table (not DB-insertion order).
+    results.sort(key=lambda r: (r["term_type"] != "brand", r["term"]))
+    return results
+
+
 def _ad_theme_lookup(cur, brands):
     where = f"{_BRAND_NAME_EXPR} = ANY(%s)" if brands else "TRUE"
     params = [brands] if brands else []
@@ -517,12 +609,22 @@ def retrieve(question, db_mode, question_number=None):
                 evidence = _completeness_check(cur, parsed.get("brands", []), parsed.get("categories", []))
             elif intent == "ad_theme_lookup":
                 evidence = _ad_theme_lookup(cur, parsed.get("brands", []))
+            elif intent == "search_trend_direction":
+                evidence = _search_trend_direction(cur)
             else:
                 evidence = []
     finally:
         conn.close()
 
-    evidence = _split_evidence_by_ownership(evidence)
+    # search_trend_direction is deliberately NOT run through the own/
+    # competitor split: its rows are SEARCH TERMS, not brand-owned SKU/ad
+    # facts, and half of them (the generic category terms) belong to no
+    # brand at all -- forcing them into "tracked_competitors" (the split's
+    # only bucket for anything that isn't literally named "Nestasia") would
+    # mislabel a term like "kitchen storage containers" as a competitor,
+    # which it plainly isn't.
+    if intent != "search_trend_direction":
+        evidence = _split_evidence_by_ownership(evidence)
     return {"intent": intent, "question": question, "db_mode": db_mode, "params": parsed, "evidence": evidence, "note": ""}
 
 
