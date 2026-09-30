@@ -1,0 +1,1224 @@
+signal_type,term,category,term_type,batch_id,date,interest_value,is_partial,query_type,related_query,related_value_raw,related_value_numeric,suggestion_rank,suggestion_text,source_type,collected_at
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-06-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-06-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-06-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-06-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-06-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-07-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-07-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-07-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-07-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-07-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-15,94,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-08-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-08-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-08-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-08-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-08-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-15,100,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-16,6,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-16,6,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-16,25,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-17,8,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-17,20,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-18,7,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-18,6,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-18,14,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-22,19,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-22,17,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-23,12,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-23,18,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-24,10,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-24,15,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-24,23,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-25,6,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-25,7,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-25,7,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-25,23,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-26,7,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-26,15,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-26,11,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-26,25,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-27,8,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-27,7,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-27,8,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-27,41,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-28,7,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-28,7,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-28,21,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-29,8,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-29,19,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Nestasia cookware,Cookware,brand,1,2026-09-30,0,True,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Wonderchef cookware,Cookware,brand,1,2026-09-30,0,True,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Home Centre kitchen,Cookware,brand,1,2026-09-30,0,True,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Milton cookware,Cookware,brand,1,2026-09-30,0,True,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Prestige cookware,Cookware,brand,1,2026-09-30,15,True,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-06-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-06-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-06-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-06-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-06-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-02,56,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-07,56,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-08,63,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-11,66,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-22,73,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-23,71,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-24,77,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-07-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-07-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-07-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-07-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-07-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-06,100,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-11,62,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-14,58,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-20,68,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-25,63,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-08-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-08-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-08-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-08-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-08-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-01,63,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-02,56,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-06,75,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-11,72,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-13,92,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-16,12,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-16,26,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-16,27,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-17,12,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-17,26,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-17,24,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-18,13,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-18,25,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-18,36,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-19,22,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-21,40,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-22,16,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-22,24,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-22,33,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-23,12,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-23,29,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-23,31,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-24,11,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-24,29,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-24,31,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-25,10,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-25,27,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-25,23,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-26,20,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-26,37,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-26,25,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-27,16,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-27,40,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-27,28,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-28,14,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-28,28,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-28,28,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-29,6,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-29,25,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-29,31,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,Borosil cookware,Cookware,brand,2,2026-09-30,0,True,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,ceramic bakeware,Bakeware,generic,2,2026-09-30,0,True,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,stainless steel kadhai,Cookware,generic,2,2026-09-30,10,True,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen storage containers,Container,generic,2,2026-09-30,22,True,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,insulated lunch box,Lunch Boxes+Bags,generic,2,2026-09-30,26,True,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+related_query,kitchen storage containers,Container,generic,2,,,,top,kitchen storage containers set,100,100,,,search_signal,2026-09-30T11:04:22.037728+00:00
+related_query,kitchen storage containers,Container,generic,2,,,,top,glass kitchen storage containers,70,70,,,search_signal,2026-09-30T11:04:22.037728+00:00
+related_query,kitchen storage containers,Container,generic,2,,,,top,kitchen storage containers big size,29,29,,,search_signal,2026-09-30T11:04:22.037728+00:00
+related_query,kitchen storage containers,Container,generic,2,,,,top,best kitchen storage containers,18,18,,,search_signal,2026-09-30T11:04:22.037728+00:00
+related_query,kitchen storage containers,Container,generic,2,,,,top,ikea kitchen storage containers,11,11,,,search_signal,2026-09-30T11:04:22.037728+00:00
+related_query,kitchen storage containers,Container,generic,2,,,,top,modular kitchen storage containers,10,10,,,search_signal,2026-09-30T11:04:22.037728+00:00
+related_query,kitchen storage containers,Container,generic,2,,,,rising,modular kitchen storage containers,60,60,,,search_signal,2026-09-30T11:04:22.037728+00:00
+related_query,kitchen storage containers,Container,generic,2,,,,rising,glass kitchen storage containers,40,40,,,search_signal,2026-09-30T11:04:22.037728+00:00
+related_query,insulated lunch box,Lunch Boxes+Bags,generic,2,,,,top,stainless steel insulated lunch box,100,100,,,search_signal,2026-09-30T11:04:22.037728+00:00
+related_query,insulated lunch box,Lunch Boxes+Bags,generic,2,,,,top,borosil insulated lunch box,55,55,,,search_signal,2026-09-30T11:04:22.037728+00:00
+related_query,insulated lunch box,Lunch Boxes+Bags,generic,2,,,,top,lunch bag,53,53,,,search_signal,2026-09-30T11:04:22.037728+00:00
+related_query,insulated lunch box,Lunch Boxes+Bags,generic,2,,,,top,insulated lunch bag,52,52,,,search_signal,2026-09-30T11:04:22.037728+00:00
+related_query,insulated lunch box,Lunch Boxes+Bags,generic,2,,,,top,insulated lunch box for kids,41,41,,,search_signal,2026-09-30T11:04:22.037728+00:00
+related_query,insulated lunch box,Lunch Boxes+Bags,generic,2,,,,top,insulated lunch box for office,39,39,,,search_signal,2026-09-30T11:04:22.037728+00:00
+related_query,insulated lunch box,Lunch Boxes+Bags,generic,2,,,,top,thermal insulated lunch box,25,25,,,search_signal,2026-09-30T11:04:22.037728+00:00
+related_query,insulated lunch box,Lunch Boxes+Bags,generic,2,,,,top,best insulated lunch box,23,23,,,search_signal,2026-09-30T11:04:22.037728+00:00
+related_query,insulated lunch box,Lunch Boxes+Bags,generic,2,,,,top,insulated lunch box for adults,6,6,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-06-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-06-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-05,93,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-07-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-07-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-30,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-08-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-08-31,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-01,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-02,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-03,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-04,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-05,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-06,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-07,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-08,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-09,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-10,100,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-10,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-11,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-12,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-13,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-14,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-15,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-16,20,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-16,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-17,22,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-17,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-18,25,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-18,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-19,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-20,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-21,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-22,24,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-22,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-23,28,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-23,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-24,16,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-24,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-25,24,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-25,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-26,31,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-26,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-27,32,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-27,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-28,27,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-28,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-29,8,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-29,0,False,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,kitchen rack organizer,Kitchen Racks+Trivets,generic,3,2026-09-30,17,True,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+interest_over_time,buy cookware online india,Cookware,generic,3,2026-09-30,0,True,,,,,,,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Nestasia,,brand,,,,,,,,,1,nestasia tumbler,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Nestasia,,brand,,,,,,,,,2,https://nestasia.in/,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Nestasia,,brand,,,,,,,,,3,nestasia store,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Nestasia,,brand,,,,,,,,,4,nestasia glass set,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Nestasia,,brand,,,,,,,,,5,nestasia rakhi,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Nestasia,,brand,,,,,,,,,6,nestasia water bottle,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Nestasia,,brand,,,,,,,,,7,nestasia dinner set,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Nestasia,,brand,,,,,,,,,8,nestasia glasses,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Nestasia,,brand,,,,,,,,,9,nestasia products,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Nestasia,,brand,,,,,,,,,10,nestasia store near me,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Nestasia,,brand,,,,,,,,,11,nestasia home decor,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Nestasia,,brand,,,,,,,,,12,nestasia lunch box,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Nestasia,,brand,,,,,,,,,13,nestasia oil dispenser,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Nestasia,,brand,,,,,,,,,14,nestasia bottle,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Nestasia,,brand,,,,,,,,,15,nestasia lunch bag,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Wonderchef,,brand,,,,,,,,,1,wonderchef customer care,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Wonderchef,,brand,,,,,,,,,2,wonderchef air fryer,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Wonderchef,,brand,,,,,,,,,3,wonderchef mixer,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Wonderchef,,brand,,,,,,,,,4,wonderchef coffee maker,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Wonderchef,,brand,,,,,,,,,5,wonderchef blender,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Wonderchef,,brand,,,,,,,,,6,wonderchef induction,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Wonderchef,,brand,,,,,,,,,7,wonderchef mixer grinder,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Wonderchef,,brand,,,,,,,,,8,wonderchef nutri blend,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Wonderchef,,brand,,,,,,,,,9,wonderchef roti maker,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Wonderchef,,brand,,,,,,,,,10,wonderchef toaster,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Wonderchef,,brand,,,,,,,,,11,wonderchef chopper,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Wonderchef,,brand,,,,,,,,,12,wonderchef electric kettle,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Wonderchef,,brand,,,,,,,,,13,wonderchef kettle,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Wonderchef,,brand,,,,,,,,,14,wonderchef otg,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Wonderchef,,brand,,,,,,,,,15,wonderchef customer care number,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Home Centre,,brand,,,,,,,,,1,home centre online,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Home Centre,,brand,,,,,,,,,2,https://www.homecentre.in/,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Home Centre,,brand,,,,,,,,,3,home centre bhubaneswar,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Home Centre,,brand,,,,,,,,,4,home centre near me,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Home Centre,,brand,,,,,,,,,5,home centre sofa,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Home Centre,,brand,,,,,,,,,6,home centre furniture,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Home Centre,,brand,,,,,,,,,7,home centre india,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Home Centre,,brand,,,,,,,,,8,home centre online shopping,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Home Centre,,brand,,,,,,,,,9,home centre dining table,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Home Centre,,brand,,,,,,,,,10,home centre customer care,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Home Centre,,brand,,,,,,,,,11,home centre beds,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Home Centre,,brand,,,,,,,,,12,home centre sofa set,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Home Centre,,brand,,,,,,,,,13,home centre curtains,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Home Centre,,brand,,,,,,,,,14,home centre study table,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Home Centre,,brand,,,,,,,,,15,home centre shoe rack,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Milton,,brand,,,,,,,,,1,milton water bottle,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Milton,,brand,,,,,,,,,2,milton thermo flask,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Milton,,brand,,,,,,,,,3,milton lunch box,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Milton,,brand,,,,,,,,,4,milton steel water bottle,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Milton,,brand,,,,,,,,,5,milton filter,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Milton,,brand,,,,,,,,,6,milton bottle,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Milton,,brand,,,,,,,,,7,milton tiffin box,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Milton,,brand,,,,,,,,,8,milton store near me,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Milton,,brand,,,,,,,,,9,milton store bhubaneswar,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Milton,,brand,,,,,,,,,10,milton plastic water bottle,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Milton,,brand,,,,,,,,,11,milton water filter,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Milton,,brand,,,,,,,,,12,milton customer care number,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Milton,,brand,,,,,,,,,13,milton thermosteel,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Milton,,brand,,,,,,,,,14,milton shop near me,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Milton,,brand,,,,,,,,,15,milton tumbler,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Prestige,,brand,,,,,,,,,1,prestige induction,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Prestige,,brand,,,,,,,,,2,prestige customer care number,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Prestige,,brand,,,,,,,,,3,prestige movie,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Prestige,,brand,,,,,,,,,4,prestige bhubaneswar,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Prestige,,brand,,,,,,,,,5,prestige pressure cooker,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Prestige,,brand,,,,,,,,,6,prestige store near me,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Prestige,,brand,,,,,,,,,7,prestige induction cooker,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Prestige,,brand,,,,,,,,,8,prestige cooker,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Prestige,,brand,,,,,,,,,9,prestige roti maker,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Prestige,,brand,,,,,,,,,10,prestige kettle,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Prestige,,brand,,,,,,,,,11,prestige induction cooktop,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Prestige,,brand,,,,,,,,,12,prestige customer care number cuttack,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Prestige,,brand,,,,,,,,,13,prestige customer care,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Prestige,,brand,,,,,,,,,14,prestige service centre cuttack,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Prestige,,brand,,,,,,,,,15,prestige group,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Borosil,,brand,,,,,,,,,1,borosil water bottle,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Borosil,,brand,,,,,,,,,2,borosil lunch box,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Borosil,,brand,,,,,,,,,3,borosil glass,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Borosil,,brand,,,,,,,,,4,borosil juicer,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Borosil,,brand,,,,,,,,,5,borosil bottle,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Borosil,,brand,,,,,,,,,6,borosil chopper,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Borosil,,brand,,,,,,,,,7,borosil blender,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Borosil,,brand,,,,,,,,,8,borosil glass bottle,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Borosil,,brand,,,,,,,,,9,borosil grinder,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Borosil,,brand,,,,,,,,,10,borosil dinner set,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Borosil,,brand,,,,,,,,,11,borosil kettle,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Borosil,,brand,,,,,,,,,12,borosil coffee mug,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Borosil,,brand,,,,,,,,,13,borosil tiffin box,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Borosil,,brand,,,,,,,,,14,borosil electric chopper,search_signal,2026-09-30T11:04:22.037728+00:00
+autocomplete,Borosil,,brand,,,,,,,,,15,borosil mixer grinder,search_signal,2026-09-30T11:04:22.037728+00:00
